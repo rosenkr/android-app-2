@@ -1,32 +1,6 @@
 package se.umu.alro0113.trackandbet.marketdata.domain.model
 import kotlinx.serialization.Serializable
 
-// currently unused
-@Serializable
-data class TickerResponse(
-    val pagination: Pagination,
-    val data: List<TickerData>
-)
-
-@Serializable
-data class TickerData(
-    val open: Double,
-    val high: Double,
-    val low: Double,
-    val close: Double,
-    val volume: Double,
-    val adj_high: Double,
-    val adj_low: Double,
-    val adj_close: Double,
-    val adj_open: Double,
-    val adj_volume: Double,
-    val split_factor: Double,
-    val dividend: Double,
-    val symbol: String,
-    val exchange: String,
-    val date: String
-)
-
 @Serializable
 data class ExchangeResponse(
     val pagination: Pagination,
@@ -41,11 +15,11 @@ data class ExchangeData(
     val country: String,
     val city: String,
     val website: String,
-    val tickers: List<TickerSummary>
+    val tickers: List<Ticker>
 )
 
 @Serializable
-data class TickerSummary(
+data class Ticker(
     val name: String,
     val symbol: String,
     val has_intraday: Boolean,

@@ -1,5 +1,6 @@
 package se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,13 +31,14 @@ class TickersViewModel @Inject constructor(
 
             tickersRepository.getTickers()
                 .onRight { tickers ->
-                    _state.postValue(_state.value?.copy(tickers = tickers))
+                    _state.postValue(_state.value?.copy(tickers = tickers, isLoading = false))
+                    Log.d("TickersViewModel", "Tickers retrieved successfully. Count: ${tickers.size}")
+                    Log.d("TickersViewModel", "Current state: $_state.value")
                 }
                 .onLeft { error ->
-                    _state.postValue(_state.value?.copy(error = error.error.message))
+                    _state.postValue(_state.value?.copy(error = error.error.message, isLoading = false))
                     sendEvent(Event.Toast(error.error.message))
                 }
-            _state.postValue(_state.value?.copy(isLoading = false))
         }
     }
 }

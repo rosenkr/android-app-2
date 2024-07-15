@@ -1,6 +1,7 @@
 package se.umu.alro0113.trackandbet.marketdata.domain.repository
 
 import arrow.core.Either
+import se.umu.alro0113.trackandbet.marketdata.domain.model.ExchangeResponse
 import se.umu.alro0113.trackandbet.marketdata.domain.model.NetworkError
 import se.umu.alro0113.trackandbet.marketdata.domain.model.Ticker
 
