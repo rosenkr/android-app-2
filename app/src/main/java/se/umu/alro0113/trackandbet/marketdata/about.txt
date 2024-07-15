@@ -1,0 +1,11 @@
+With the two api calls, I can :
+Create a LazyList of just the tickers for an exchange (lets add a dropdown
+where user can swap exchanges too)
+and then the user can press a ticker in the list, and
+then a new api call is made for the specific ticker, which contains
+extended information, and this is encapsulated in my Ticker(!) data class
+The question is, do I really even need to have that Ticker class?
+Since all the data is already encapsulated in TickerData in MarketStackApiResponses.kt
+Because the TickerResponse has a list of 100 recent trading days
+and I can just access the "recent" actual Ticker as : val x = TickerResponse.data[0]
+and then x.date, x.price, etc...

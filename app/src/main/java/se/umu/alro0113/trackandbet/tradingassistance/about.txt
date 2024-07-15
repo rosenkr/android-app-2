@@ -1,0 +1,16 @@
+FAB to add new strategy
+lazylist of existing strategies, clickable to view config
+
+add new strategy: new nav dest/fragment/ actual view
+sliders with val 1-10 to set weightings for different attributes
+
+
+inside fab button creation page, first select type (daytrading, swing,
+seasonal). these have different properties to choose from
+fore xample seasonal has (winter/summer bullish/bearish) preference
+to choose from
+
+
+important: volume, macd, daily high/low, first 45 minutes chaos,
+power-hour in usa, etc
+

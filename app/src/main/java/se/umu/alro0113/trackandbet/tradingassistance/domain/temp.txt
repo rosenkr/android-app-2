@@ -1,0 +1,6 @@
+just because adding packages were bugged if some file doesnt exist in this package
+
+
+for a Strategy, may need to add data classes such as Algorithm ( a strategy may be accompanied by an algorithm )
+a strategy may have subclasses (Simple(with user input, no algorithm) vs Complex (autonomous, AI, no user input))
+and both of these may be adjusted to work on one of three timescales: ... daily/swing/seasonal...
