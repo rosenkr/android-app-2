@@ -21,19 +21,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import kotlinx.serialization.Serializable
+import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.ScreenB
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.LoadingDialog
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTopAppBar
 
+// temp for testing compose navigation with safe args since ver 2.8.0
+@Serializable
+object ScreenA
+
+
 @Composable
 internal fun TickersScreen(
+    navController: NavController,
     viewModel: TickersViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.observeAsState()
-    state?.let { TickersContent(state = it) }
+    state?.let { TickersContent(state = it, navController = navController) }
 }
 
 @Composable
 fun TickersContent(
+    navController: NavController,
     state: TickersViewState,
 ) {
     LoadingDialog(isLoading = state.isLoading)
@@ -49,7 +58,7 @@ fun TickersContent(
         ) {
 
             items(state.tickers) { ticker ->
-                ColumnItem(symbol = ticker.symbol)
+                ColumnItem(symbol = ticker.symbol, navController = navController)
             }
         }
     }
@@ -57,7 +66,8 @@ fun TickersContent(
 
 @Composable
 fun ColumnItem(
-    modifier: Modifier = Modifier, // video passes modifier from screen, not sure why we cant just create its own inside here
+    navController: NavController,
+    modifier: Modifier = Modifier,
     symbol: String
 ) {
 
@@ -66,7 +76,7 @@ fun ColumnItem(
             .padding(10.dp)
             .fillMaxWidth()
             .clickable {
-                // make api call instead of direct navigation?
+                navController.navigate(ScreenB(symbol = "argument test"))
             },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer

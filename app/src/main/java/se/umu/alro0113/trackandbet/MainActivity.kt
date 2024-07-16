@@ -23,8 +23,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import dagger.hilt.android.AndroidEntryPoint
 import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailScreen
+import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.ScreenB
+import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.ScreenA
 import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersScreen
 import se.umu.alro0113.trackandbet.ui.theme.AppTheme
 import se.umu.alro0113.trackandbet.util.Event
@@ -37,7 +40,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                val lifecycle = LocalLifecycleOwner.current.lifecycle
+                val lifecycle = androidx.lifecycle.compose.LocalLifecycleOwner.current.lifecycle
                 LaunchedEffect(key1 = lifecycle) {
                     repeatOnLifecycle(state = Lifecycle.State.STARTED) {
                         EventBus.events.collect { event ->
@@ -51,8 +54,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TickersScreen()
-                    // test
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = ScreenA
+                    ) {
+                        composable<ScreenA> {
+                            TickersScreen(navController)
+                        }
+                        composable<ScreenB> {
+                            val args = it.toRoute<ScreenB>()
+                            DetailScreen(symbol = args.symbol)
+                        }
+                    }
                 }
             }
         }
