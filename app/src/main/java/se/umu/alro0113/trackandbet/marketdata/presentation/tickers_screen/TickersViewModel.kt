@@ -23,6 +23,7 @@ class TickersViewModel @Inject constructor(
     init {
         _state.value = TickersViewState()
         getTickers()
+
     }
 
     fun getTickers(){

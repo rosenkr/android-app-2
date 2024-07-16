@@ -18,7 +18,13 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
+import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailScreen
 import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersScreen
 import se.umu.alro0113.trackandbet.ui.theme.AppTheme
 import se.umu.alro0113.trackandbet.util.Event

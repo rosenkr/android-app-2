@@ -26,7 +26,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -85,7 +84,7 @@ dependencies {
     /* added */
     implementation(libs.vico.compose.m3) // charts and graphs
     implementation(libs.androidx.ui.text.google.fonts) // text fonts
-    implementation(libs.material) // not sure how this appeared
+    //implementation(libs.material)
     implementation(libs.androidx.appcompat)
 
     // ktor for client-side
@@ -94,7 +93,7 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.content.negotiation)
 
-    // general json handling
+    // general json handling and compose safe args navigation
     implementation(libs.kotlinx.serialization.json)
 
     // images
@@ -113,11 +112,9 @@ dependencies {
     implementation(libs.arrow.core)
     implementation(libs.arrow.fx.coroutines)
 
-    // Retrofit (s)
-    //implementation(libs.retrofit)
-    //implementation(libs.converter.gson)
-
-    // ktorfit testing if can replace retrofit for DI
+    // ktorfit for DI
     implementation(libs.ktorfit.lib)
+
+    implementation(libs.androidx.navigation.compose)
 
 }
