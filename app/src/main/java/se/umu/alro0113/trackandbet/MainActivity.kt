@@ -52,6 +52,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     TickersScreen()
+                    // test
                 }
             }
         }
