@@ -33,8 +33,6 @@ class TickersViewModel @Inject constructor(
             tickersRepository.getTickers()
                 .onRight { tickers ->
                     _state.postValue(_state.value?.copy(tickers = tickers, isLoading = false))
-                    Log.d("TickersViewModel", "Tickers retrieved successfully. Count: ${tickers.size}")
-                    Log.d("TickersViewModel", "Current state: $_state.value")
                 }
                 .onLeft { error ->
                     _state.postValue(_state.value?.copy(error = error.error.message, isLoading = false))
