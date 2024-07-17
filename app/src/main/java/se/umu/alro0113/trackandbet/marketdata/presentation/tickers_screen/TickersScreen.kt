@@ -54,7 +54,7 @@ fun TickersContent(
     ) {
 
         LazyColumn(
-            modifier = Modifier.padding(top = it.calculateTopPadding()),
+            modifier = Modifier.padding(top = it.calculateTopPadding())
         ) {
 
             items(state.tickers) { ticker ->
@@ -76,7 +76,9 @@ fun ColumnItem(
             .padding(10.dp)
             .fillMaxWidth()
             .clickable {
-                navController.navigate(ScreenB(symbol = "argument test"))
+                navController.navigate(ScreenB)
+                // navigation works, but we also should simultaneously (asyncly) make api call somehwer
+                // TODO check how/when the initial call for TickersScreen getTickers from api is <actually> made?
             },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer

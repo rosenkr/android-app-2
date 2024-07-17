@@ -16,12 +16,6 @@ class TickersRepositoryImpl @Inject constructor(
     override suspend fun getTickers(): Either<NetworkError, List<Ticker>> {
         return Either.catch {
             val tickers = tickersApi.getExchangeResponse().data.tickers
-            // temporary error checking if/else. The data IS being retrieved succesfully
-            if (tickers.isNotEmpty()) {
-                println("Tickers retrieved successfully. Count: ${tickers.size}")
-            } else {
-                println("No tickers retrieved or empty list.")
-            }
             tickers // returning the list of tickers
             // tickersApi.getExchangeResponse().data.tickers
         }.mapLeft { it.toNetworkError() }

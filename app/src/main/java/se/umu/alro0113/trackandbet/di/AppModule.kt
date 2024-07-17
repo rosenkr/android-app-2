@@ -11,7 +11,9 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import se.umu.alro0113.trackandbet.marketdata.data.remote.DetailsApi
 import se.umu.alro0113.trackandbet.marketdata.data.remote.TickersApi
+import se.umu.alro0113.trackandbet.marketdata.data.remote.createDetailsApi
 import se.umu.alro0113.trackandbet.marketdata.data.remote.createTickersApi
 import javax.inject.Singleton
 
@@ -43,5 +45,11 @@ object AppModule {
     @Singleton
     fun provideTickersApi(ktorfit: Ktorfit): TickersApi {
         return ktorfit.createTickersApi()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDetailsApi(ktorfit: Ktorfit): DetailsApi {
+        return ktorfit.createDetailsApi()
     }
 }

@@ -96,25 +96,27 @@ dependencies {
     // general json handling and compose safe args navigation
     implementation(libs.kotlinx.serialization.json)
 
-    // images
+    // images (not using)
     implementation(libs.coil.compose)
 
     // Dagger/Hilt
-
     implementation(libs.hilt.android)
-    //kapt(libs.hilt.android.compiler)
+    //kapt(libs.hilt.android.compiler) // replaced with more modern ksp
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    /* adding these just in case, as following guide on clean architecture at https://www.youtube.com/watch?v=TosPS55y_IY
-    * has to do with how he implements his architecture model using "Either" from Arrow*/
-    // Arrow
+
+    // Arrow for "Either" instead of try catch
     implementation(libs.arrow.core)
     implementation(libs.arrow.fx.coroutines)
 
     // ktorfit for DI
     implementation(libs.ktorfit.lib)
 
+    // 2.8.0 beta navigation with safe args like in xml
     implementation(libs.androidx.navigation.compose)
+
+    // reflection to extract member variable name for labels in a composable
+    implementation(libs.kotlin.reflect)
 
 }

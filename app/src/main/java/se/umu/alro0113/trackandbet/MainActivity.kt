@@ -57,14 +57,13 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = ScreenA
+                        startDestination = ScreenA // tickers screen
                     ) {
                         composable<ScreenA> {
                             TickersScreen(navController)
                         }
                         composable<ScreenB> {
-                            val args = it.toRoute<ScreenB>()
-                            DetailScreen(symbol = args.symbol)
+                            DetailScreen()
                         }
                     }
                 }
