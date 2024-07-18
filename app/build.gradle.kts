@@ -119,4 +119,12 @@ dependencies {
     // reflection to extract member variable name for labels in a composable
     implementation(libs.kotlin.reflect)
 
+    // api instead of implementation is only relevant
+    // for KMP projects with different source sets such as android,desktop,ios
+    api(libs.datastore.preferences)
+    api(libs.datastore)
+
+    // Splash Screen
+    implementation(libs.androidx.core.splashscreen)
+
 }

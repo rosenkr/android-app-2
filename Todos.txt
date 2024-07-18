@@ -1,0 +1,32 @@
+todo trackandbet app:
+implement vico (separate data[0] from data in repo to allow this)
+future features:
+1. dropdown list in top app bar to choose from a few exchanges
+2. search bar for ticker symbol so user doesnt have to scroll 100 + tickers
+3. login/user setup page
+4. rooms local database? (for what though)
+5. ktor server in the cloud with docker container, the idea is that the client should not make api calls at all, it contacts server which itself makes api calls at set timed intervals
+6. add image in the cards using coil, for example icon of each company beside the symbol
+7. Jetpack compose DataStore for simple key-value pairs user configuration
+    7.1 apply it for onboarding, thus, add feature onboarding ( three screens showing usage/short explanation)
+    7.2 splash screen -> onboarding flow on first time -> home screen
+8. bottom navigtion bar (for example: exchanges, home, strategies) and then FAB inside strategies
+9. home screen: user can swipe between two modes:
+showing a preselected chart (dataStore preferences useful)
+or a page with statistics? (change, statistics kinda boring) but the point is, once again datastore to store the last chosen mode of the two.
+clean project from unused imports and bad comments/ and check TODO's
+add "testing" package which has folder for my json file api mock response for exchange xnas / aapl ticker 
+setup ktor base url to be my machine, and endpoint be the file, and finally:
+in the clickable card, do if BuildConfig.DEBUG, then call the testing package files instead of real api (to save api calls as I am capped at 100/month)
+
+
+di package, try renaming repository module classes instead of repmod, repmod2, to tickersrepmod, detailsrepmod
+
+External Documentation todo:
+write document .pdf about the project
+(idea: market trading, with AI for algorithmic automation, but user input to set constraints/limits/weightings
+to create a personal strategy based on personal convictions/emotions, but also allow user to intervene
+due to news)
+ add the image from the land of coding video with Event bus/presentation/domain/data layers
+
+

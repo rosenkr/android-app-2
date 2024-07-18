@@ -3,6 +3,7 @@ agp = "8.5.1"
 arrowCore = "1.2.0"
 coilCompose = "2.6.0"
 converterGson = "2.9.0"
+coreSplashscreen = "1.0.1"
 hiltAndroidCompiler = "2.49"
 hiltNavigationCompose = "1.2.0"
 kotlin = "2.0.0"
@@ -23,9 +24,11 @@ uiTextGoogleFonts = "1.6.8"
 ktor_version = "2.3.11"
 kotlinx_serialization_version = "1.7.1"
 runtimeLivedata = "1.6.8"
+datastore = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrowCore" }
@@ -55,6 +58,10 @@ ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor_version" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor_version" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx_serialization_version" }
+
+# not sure if KMP plugin needed to just use datastore? see https://www.youtube.com/watch?v=cQ64RkdPZBw
+datastore = { module = "androidx.datastore:datastore", version.ref = "datastore"}
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore"}
 
 # For `compose`. Creates a `ChartStyle` based on an M3 Material Theme.
 ktorfit-lib = { module = "de.jensklingenberg.ktorfit:ktorfit-lib", version.ref = "ktorfitVersion" }
