@@ -18,7 +18,8 @@ clean project from unused imports and bad comments/ and check TODO's
 add "testing" package which has folder for my json file api mock response for exchange xnas / aapl ticker 
 setup ktor base url to be my machine, and endpoint be the file, and finally:
 in the clickable card, do if BuildConfig.DEBUG, then call the testing package files instead of real api (to save api calls as I am capped at 100/month)
-
+10. For HomeScreen (from OnBoarding video) check his way, then instead use my home screen being
+the one from the Land of Coding video for a Home Screen with compose.
 
 di package, try renaming repository module classes instead of repmod, repmod2, to tickersrepmod, detailsrepmod
 

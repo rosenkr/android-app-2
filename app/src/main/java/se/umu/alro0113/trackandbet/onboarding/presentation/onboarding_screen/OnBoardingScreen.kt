@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import se.umu.alro0113.trackandbet.onboarding.presentation.OnboardingViewModel
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.NextBackButton
+import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.OnBoardingPage
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.PageIndicator
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.pages
 
@@ -34,8 +35,8 @@ fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {
         val currentPage = pagerState.currentPage
         val scope = rememberCoroutineScope()
 
-        HorizontalPager(state = pagerState) {
-            OnBoardingScreen(onboardingViewModel = onboardingViewModel)
+        HorizontalPager(state = pagerState) { position ->
+            OnBoardingPage(page = pages[position])
         }
         Spacer(modifier = Modifier.weight(1f))
 
@@ -63,8 +64,6 @@ fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {
                     }
                 },
                 onGetStartedClick = { onboardingViewModel.saveAppEntry() })
-
-                )
         }
     }
 }
