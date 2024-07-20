@@ -24,11 +24,12 @@ import kotlinx.serialization.Serializable
 import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailScreen
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.LoadingDialog
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTopAppBar
+import se.umu.alro0113.trackandbet.navigation.Screen
 
 // temp for testing compose navigation with safe args since ver 2.8.0, may break out the objects
-// for screens into navigation.screens ?
-@Serializable
-object TickersScreen
+// for screens into navigation.screns ?
+/*@Serializable
+object TickersScreen*/
 
 
 @Composable
@@ -76,7 +77,7 @@ fun ColumnItem(
             .padding(10.dp)
             .fillMaxWidth()
             .clickable {
-                navController.navigate(DetailScreen)
+                navController.navigate(Screen.DetailScreen)
                 // navigation works, but we also should simultaneously (asyncly) make api call somehwer
                 // TODO check how/when the initial call for TickersScreen getTickers from api is <actually> made?
             },
