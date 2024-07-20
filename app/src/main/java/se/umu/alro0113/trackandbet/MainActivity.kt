@@ -1,6 +1,7 @@
 package se.umu.alro0113.trackandbet
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,13 +29,13 @@ import se.umu.alro0113.trackandbet.util.EventBus
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    // need to access viewmodel here to call installSplashScreen depending on isLoading or not, before
-    //
+    // need to access viewmodel here to call installSplashScreen depending on isLoading or not
     private val onboardingViewModel : OnboardingViewModel by viewModels<OnboardingViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // This needs to be called before Activity. setContentView or other view operations
         installSplashScreen().setKeepOnScreenCondition {
             onboardingViewModel.isLoading
         }
@@ -52,29 +53,19 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+
+                LaunchedEffect(onboardingViewModel.startDestination) {
+                    Log.d("MainActivity", "Start destination: ${onboardingViewModel.startDestination}")
+                }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AppNavigation(startDestination = HomeScreen, onboardingViewModel = onboardingViewModel)
+                    AppNavigation(startDestination = onboardingViewModel.startDestination, onboardingViewModel = onboardingViewModel)
                     // TODO AppNavigation(startDestination = // I take an object, but onboardingViewModel.startDestination is an string.., onboardingViewModel = onboardingViewModel)
                 }
             }
         }
     }
 }
-
-/*
-                    val navController = rememberNavController()
-                    NavHost(
-                        navController = navController,
-                        startDestination = ScreenA // tickers screen
-                    ) {
-                        composable<ScreenA> {
-                            TickersScreen(navController)
-                        }
-                        composable<ScreenB> {
-                            DetailScreen()
-                        }
-                    }
- */
