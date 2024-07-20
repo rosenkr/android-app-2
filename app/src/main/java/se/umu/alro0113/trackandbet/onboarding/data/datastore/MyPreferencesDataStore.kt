@@ -38,6 +38,7 @@ class MyPreferencesDataStore @Inject constructor(
             preferences[PreferencesKeys.APP_ENTRY_KEY] ?: true
         }
 
+    // set to false when user has been on the app the first times
     suspend fun saveAppEntry() {
         myPreferencesDataStore.edit { preferences ->
             preferences[PreferencesKeys.APP_ENTRY_KEY] = false
