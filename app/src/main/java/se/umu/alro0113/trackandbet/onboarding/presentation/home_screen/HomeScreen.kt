@@ -1,5 +1,6 @@
 package se.umu.alro0113.trackandbet.onboarding.presentation.home_screen
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,17 +24,19 @@ import androidx.navigation.NavHostController
 import kotlinx.serialization.Serializable
 import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailScreen
 import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersScreen
+import se.umu.alro0113.trackandbet.navigation.Screen
 
 
 /* so will probably make this with object, then compose navigation calls this as startDest
     Note that this differs from Login Screen, which I will implement later
  */
-
+/*
 @Serializable
-object HomeScreen
+object HomeScreen*/
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
+    Log.d("HomeScreen", "HomeScreen recomposed")
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -46,7 +49,7 @@ fun HomeScreen(navController: NavHostController) {
         ) {
             Button(
                 onClick = {
-                    navController.navigate(TickersScreen)
+                    navController.navigate(Screen.TickersScreen)
                 }
             ) {
                 Text(text = "Go to tickers screen")
@@ -64,3 +67,14 @@ fun HomeScreen(navController: NavHostController) {
         }
     }
 }
+
+/*
+force recomposition ? @Composable
+fun ForceRecompositionTrigger() {
+    val state by remember { mutableStateOf(Unit) }
+    LaunchedEffect(state) {
+        // This will force recomposition when the state changes
+        // Use this for testing purposes
+    }
+}
+ */
