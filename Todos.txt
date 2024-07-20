@@ -1,4 +1,7 @@
 todo trackandbet app:
+0. later try figure out how to hide API key properly 
+
+
 implement vico (separate data[0] from data in repo to allow this)
 future features:
 1. dropdown list in top app bar to choose from a few exchanges

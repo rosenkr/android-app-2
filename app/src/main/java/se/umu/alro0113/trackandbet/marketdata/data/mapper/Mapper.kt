@@ -7,9 +7,6 @@ import se.umu.alro0113.trackandbet.marketdata.domain.model.ApiError
 import se.umu.alro0113.trackandbet.marketdata.domain.model.NetworkError
 import java.io.IOException
 fun Throwable.toNetworkError(): NetworkError {
-    println("Exception type: ${this::class}")
-    println("Exception message: ${this.message}")
-    println()
     val error = when(this){
         is IOException -> ApiError.NetworkError
         is RedirectResponseException -> ApiError.UnknownResponse

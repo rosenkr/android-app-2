@@ -16,19 +16,16 @@ val pages = listOf(
         title = "Title for page1 with text heyyy",
         description = SAMPLE_TEXT,
         // todo add images to resources/drawable as jpg's
-        // see first 10 mins https://www.youtube.com/watch?v=u_oL9_lFuTY
         image = R.drawable.obs_1
     ),
     Page(
         title = "Title for page2 with text heyyy",
         description = SAMPLE_TEXT,
-        // todo add images to resources/drawable as jpg's
         image = R.drawable.obs_2
     ),
     Page(
         title = "Title for page3 with text heyyy",
         description = SAMPLE_TEXT,
-        // todo add images to resources/drawable as jpg's
         image = R.drawable.obs_3
     )
 )
