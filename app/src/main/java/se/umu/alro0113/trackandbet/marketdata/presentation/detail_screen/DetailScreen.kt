@@ -25,11 +25,11 @@ import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTop
 import kotlin.reflect.full.memberProperties
 
 
-// TODO not sure about the argument symbol. Keep in mind, currently I have hardcoded AAPL. Ideally, ScreenB is called with arg, or atleast the api call
+// TODO not sure about the argument symbol. Keep in mind,currently I have hardcoded AAPL. Ideally, ScreenB is called with arg, or atleast the api call
 // TODO should know which ticker to find details about, but perhaps I dont have to do ScreenB(theticker).
 // TODO also, do I need to have navController here? In case the "back" button requires it for back stack entry stuff
-@Serializable
-object DetailScreen
+/*@Serializable
+object DetailScreen*/
 
 @Composable
 internal fun DetailScreen(
