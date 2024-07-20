@@ -4,12 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
 
-    // fix to use alias
-    //kotlin("kapt")
-    //id("kotlin-kapt")
-
     id("com.google.dagger.hilt.android") version "2.49"
-    //id("kotlinx-serialization")
 
     // ktorfit instead of retrofit for handling DI with the httlp client
     id("com.google.devtools.ksp")
@@ -31,7 +26,6 @@ android {
             useSupportLibrary = true
         }
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -51,6 +45,7 @@ android {
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -84,7 +79,6 @@ dependencies {
     /* added */
     implementation(libs.vico.compose.m3) // charts and graphs
     implementation(libs.androidx.ui.text.google.fonts) // text fonts
-    //implementation(libs.material)
     implementation(libs.androidx.appcompat)
 
     // ktor for client-side
@@ -101,7 +95,6 @@ dependencies {
 
     // Dagger/Hilt
     implementation(libs.hilt.android)
-    //kapt(libs.hilt.android.compiler) // replaced with more modern ksp
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
@@ -118,5 +111,13 @@ dependencies {
 
     // reflection to extract member variable name for labels in a composable
     implementation(libs.kotlin.reflect)
+
+    // api instead of implementation is only relevant
+    // for KMP projects with different source sets such as android,desktop,ios
+    api(libs.datastore.preferences)
+    api(libs.datastore)
+
+    // Splash Screen
+    implementation(libs.androidx.core.splashscreen)
 
 }

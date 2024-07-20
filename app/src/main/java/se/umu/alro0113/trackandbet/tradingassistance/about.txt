@@ -1,5 +1,7 @@
+(this is barely started module, future features here)
+
 FAB to add new strategy
-lazylist of existing strategies, clickable to view config
+lazylist of existing strategies, clickable to view config (datastore?)
 
 add new strategy: new nav dest/fragment/ actual view
 sliders with val 1-10 to set weightings for different attributes
