@@ -10,8 +10,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import se.umu.alro0113.trackandbet.navigation.Screen
 import se.umu.alro0113.trackandbet.onboarding.data.datastore.MyPreferencesDataStore
-import se.umu.alro0113.trackandbet.onboarding.presentation.navigation.Screen
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,17 +22,17 @@ class OnboardingViewModel @Inject constructor(
         private set
 
     // TODO perhaps to be made to point to Serializable screen object OnBoardingScreen  initially ?
-    var startDestination by mutableStateOf(Screen.OnBoardingScreen.name)
+    var startDestination by mutableStateOf<Screen>(Screen.OnBoardingScreen)
         private set
 
     init {
         myPreferencesDataStore.readAppEntry.onEach { loadOnBoardingScreen ->
            startDestination = if (loadOnBoardingScreen) {
-               Screen.OnBoardingScreen.name
+               Screen.OnBoardingScreen // TODO remove Screen enums, instead do = OnBoardingScreen obj
            } else {
-               Screen.HomeScreen.name
+               Screen.HomeScreen // TODO same here
            }
-            delay(1000)
+            delay(100) // TODO delay is problem for recomposition of homescreen, homescreen recomposes while splash screen is happening if delay is too high?
             isLoading = false
         }.launchIn(viewModelScope)
     }
