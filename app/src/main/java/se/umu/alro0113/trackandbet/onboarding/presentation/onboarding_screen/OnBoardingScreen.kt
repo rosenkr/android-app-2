@@ -22,9 +22,11 @@ import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.com
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.PageIndicator
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.pages
 
+/*
 @Serializable
-object OnBoardingScreen
+object OnBoardingScreen */
 
+// Uses https://developer.android.com/develop/ui/compose/layouts/pager
 @Composable
 fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {
     Column(
