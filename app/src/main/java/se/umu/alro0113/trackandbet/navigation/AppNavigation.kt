@@ -13,29 +13,29 @@ import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.OnB
 
 
 // add screens for onboarding. see vid what is start destination (HomeScreen? add object and call it from MainAct)
-// from the Screen class under onboarding.navigation we have
+// from the Screen class under onboarding.navigation we ave
 //     OnBoardingScreen,
 //    HomeScreen
 // and ScreenA = TickersScreen
 // ScreenB = DetailScreen
-// notice how I need to
+// notice how I need t
 @Composable
-fun AppNavigation(startDestination: Any, onboardingViewModel: OnboardingViewModel) {
+fun AppNavigation(startDestination: Screen, onboardingViewModel: OnboardingViewModel) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable<TickersScreen> {
+        composable<Screen.TickersScreen> {
             TickersScreen(navController)
         }
-        composable<DetailScreen> {
+        composable<Screen.DetailScreen> {
             DetailScreen()
         }
-        composable<OnBoardingScreen> {
+        composable<Screen.OnBoardingScreen> {
             OnBoardingScreen(onboardingViewModel = onboardingViewModel)
         }
-        composable<HomeScreen> {
+        composable<Screen.HomeScreen> {
             HomeScreen(navController = navController)
         }
     }
