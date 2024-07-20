@@ -8,8 +8,8 @@ import se.umu.alro0113.trackandbet.marketdata.domain.model.ExchangeResponse
 // TODO also anothing thing that would be nice on the TickersScreen is a search bar that autofills, helps user by only showing those
 // TODO tickers that have a substring of the current string in the field
 interface TickersApi {
-    @GET("exchanges/XNAS/tickers?access_key=5ebd15bbd5ba4ddfbfd10698ea343f13")
-    //@GET("testing, avoiding unnecessary api calls")
+    //@GET("exchanges/XNAS/tickers?access_key=5ebd15bbd5ba4ddfbfd10698ea343f13")
+    @GET("testing, avoiding unnecessary api calls")
     suspend fun getExchangeResponse(): ExchangeResponse
 
 }

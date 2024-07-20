@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,13 +17,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHost
+import androidx.navigation.NavHostController
+import kotlinx.serialization.Serializable
+import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailScreen
+import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersScreen
 
 
 /* so will probably make this with object, then compose navigation calls this as startDest
     Note that this differs from Login Screen, which I will implement later
  */
+
+@Serializable
+object HomeScreen
+
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -33,6 +44,13 @@ fun HomeScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            Button(
+                onClick = {
+                    navController.navigate(TickersScreen)
+                }
+            ) {
+                Text(text = "Go to tickers screen")
+            }
             Icon(
                 imageVector = Icons.Rounded.Home,
                 contentDescription = null,

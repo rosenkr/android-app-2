@@ -1,4 +1,4 @@
-
+1. as of testing right now, I commented out the api key calls to not hit my quota
 
 2. Sweepview the video fully to see that I currently have same as he has
 
@@ -24,4 +24,5 @@ mix it with what is currently in Appnavigation.
 object Screen(namehere)
 
 5. Change all objects for the screens to more telling names, instead of screenA, screenB etc...
+
 

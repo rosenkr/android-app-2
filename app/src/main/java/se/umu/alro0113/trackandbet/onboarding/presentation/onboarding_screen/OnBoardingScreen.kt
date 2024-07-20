@@ -1,6 +1,5 @@
 package se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,12 +15,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 import se.umu.alro0113.trackandbet.onboarding.presentation.OnboardingViewModel
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.NextBackButton
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.OnBoardingPage
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.PageIndicator
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.pages
 
+@Serializable
+object OnBoardingScreen
 
 @Composable
 fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {

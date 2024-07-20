@@ -21,6 +21,7 @@ class OnboardingViewModel @Inject constructor(
     var isLoading by mutableStateOf(true)
         private set
 
+    // TODO perhaps to be made to point to Serializable screen object OnBoardingScreen  initially ?
     var startDestination by mutableStateOf(Screen.OnBoardingScreen.name)
         private set
 
@@ -31,7 +32,7 @@ class OnboardingViewModel @Inject constructor(
            } else {
                Screen.HomeScreen.name
            }
-            delay(300)
+            delay(1000)
             isLoading = false
         }.launchIn(viewModelScope)
     }
