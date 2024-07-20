@@ -13,7 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-// change to my theme colors
+// Custom Page Indicator
 val blueColor = Color(0xFF4285F4)
 @Composable
 fun PageIndicator(
