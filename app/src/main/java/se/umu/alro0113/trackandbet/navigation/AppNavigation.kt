@@ -27,7 +27,7 @@ fun AppNavigation(startDestination: Screen, onboardingViewModel: OnboardingViewM
         startDestination = startDestination
     ) {
         composable<Screen.TickersScreen> {
-            TickersScreen(navController)
+            TickersScreen(navController = navController)
         }
         composable<Screen.DetailScreen> {
             DetailScreen()
