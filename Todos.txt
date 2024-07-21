@@ -1,8 +1,10 @@
 todo trackandbet app:
 0. later try figure out how to hide API key properly 
+10. when person is on any screen, and go out from app but dont close it,
+when reentering, they should be on the same screen. Currently, I always go to HomeScreen
 
-
-implement vico (separate data[0] from data in repo to allow this)
+11. implement vico (separate data[0] from data in repo to allow this)
+12. change pictures for onboarding
 future features:
 1. dropdown list in top app bar to choose from a few exchanges
 2. search bar for ticker symbol so user doesnt have to scroll 100 + tickers
