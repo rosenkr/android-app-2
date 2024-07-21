@@ -54,10 +54,6 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                LaunchedEffect(onboardingViewModel.startDestination) {
-                    Log.d("MainActivity", "Start destination: ${onboardingViewModel.startDestination}")
-                }
-
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
