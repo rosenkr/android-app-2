@@ -21,18 +21,17 @@ class OnboardingViewModel @Inject constructor(
     var isLoading by mutableStateOf(true)
         private set
 
-    // TODO perhaps to be made to point to Serializable screen object OnBoardingScreen  initially ?
     var startDestination by mutableStateOf<Screen>(Screen.OnBoardingScreen)
         private set
 
     init {
         myPreferencesDataStore.readAppEntry.onEach { loadOnBoardingScreen ->
            startDestination = if (loadOnBoardingScreen) {
-               Screen.OnBoardingScreen // TODO remove Screen enums, instead do = OnBoardingScreen obj
+               Screen.OnBoardingScreen
            } else {
-               Screen.HomeScreen // TODO same here
+               Screen.HomeScreen
            }
-            delay(100) // TODO delay is problem for recomposition of homescreen, homescreen recomposes while splash screen is happening if delay is too high?
+            delay(100) // OBS. Delay is problem for recomposition of homescreen, homescreen recomposes while splash screen is happening if delay is too high?
             isLoading = false
         }.launchIn(viewModelScope)
     }
