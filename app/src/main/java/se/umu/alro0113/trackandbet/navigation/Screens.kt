@@ -2,6 +2,7 @@ package se.umu.alro0113.trackandbet.navigation
 
 import kotlinx.serialization.Serializable
 
+@Serializable
 sealed class Screen {
     @Serializable
     object OnBoardingScreen : Screen()

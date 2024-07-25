@@ -25,15 +25,19 @@ import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.OnB
 import se.umu.alro0113.trackandbet.ui.theme.AppTheme
 import se.umu.alro0113.trackandbet.util.Event
 import se.umu.alro0113.trackandbet.util.EventBus
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     // need to access viewmodel here to call installSplashScreen depending on isLoading or not
     private val onboardingViewModel : OnboardingViewModel by viewModels<OnboardingViewModel>()
+    private val TAG: String = "MainActivityLifeCycle" // TESTING
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d(TAG, "onCreate") // TESTING
 
         // This needs to be called before Activity. setContentView or other view operations
         installSplashScreen().setKeepOnScreenCondition {
@@ -58,10 +62,35 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AppNavigation(startDestination = onboardingViewModel.startDestination, onboardingViewModel = onboardingViewModel)
-                    // TODO AppNavigation(startDestination = // I take an object, but onboardingViewModel.startDestination is an string.., onboardingViewModel = onboardingViewModel)
+                    // use savedstatehandle to RESTORE onboardingViewModel.startDestination
+                    val navController = rememberNavController()
+                    AppNavigation(startDestination = onboardingViewModel.startDestination, onboardingViewModel = onboardingViewModel, navController = navController)
                 }
             }
         }
+    }
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy")
     }
 }
