@@ -10,14 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavDestination
 import androidx.navigation.compose.rememberNavController
+import se.umu.alro0113.trackandbet.navigation.Screen
 import se.umu.alro0113.trackandbet.navigation.TrackAndBetNavHost
 import se.umu.alro0113.trackandbet.util.Event
 import se.umu.alro0113.trackandbet.util.EventBus
 
 
 @Composable
-fun TrackAndBetApp() {
+fun TrackAndBetApp(startDestination: Screen) {
     val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
     val context = LocalContext.current
     LaunchedEffect(key1 = lifecycleOwner) {
@@ -29,8 +31,6 @@ fun TrackAndBetApp() {
             }
         }
     }
-
     val navController = rememberNavController()
-    TrackAndBetNavHost(navController = navController)
-
+    TrackAndBetNavHost(startDestination = startDestination, navController = navController)
 }
