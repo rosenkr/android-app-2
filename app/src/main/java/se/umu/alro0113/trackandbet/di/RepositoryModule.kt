@@ -9,7 +9,7 @@ import se.umu.alro0113.trackandbet.marketdata.data.repository.TickersRepositoryI
 import se.umu.alro0113.trackandbet.marketdata.domain.repository.DetailsRepository
 import se.umu.alro0113.trackandbet.marketdata.domain.repository.TickersRepository
 import javax.inject.Singleton
-
+// binds apis to implementations, todo rename from repomodule1,2.. to tickersmodule, detailsmodule, etc
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
@@ -18,7 +18,6 @@ abstract class RepositoryModule {
     abstract fun bindTickersRepository(impl: TickersRepositoryImpl): TickersRepository
 }
 
-// TODO I just added this here but not sure if ok. also in appmodule added
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class Repository2Module {

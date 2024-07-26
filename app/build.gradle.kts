@@ -76,7 +76,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    /* added */
+    /* not using yet*/
     implementation(libs.vico.compose.m3) // charts and graphs
     implementation(libs.androidx.ui.text.google.fonts) // text fonts
     implementation(libs.androidx.appcompat)
@@ -89,9 +89,6 @@ dependencies {
 
     // general json handling and compose safe args navigation
     implementation(libs.kotlinx.serialization.json)
-
-    // images (not using)
-    implementation(libs.coil.compose)
 
     // Dagger/Hilt
     implementation(libs.hilt.android)
