@@ -10,25 +10,27 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersContent
+import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersViewModel
 import se.umu.alro0113.trackandbet.onboarding.presentation.OnboardingViewModel
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.NextBackButton
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.OnBoardingPage
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.PageIndicator
 import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.pages
 
-/*
-@Serializable
-object OnBoardingScreen */
-
-// Uses https://developer.android.com/develop/ui/compose/layouts/pager
 @Composable
-fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {
+fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel = hiltViewModel()
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
