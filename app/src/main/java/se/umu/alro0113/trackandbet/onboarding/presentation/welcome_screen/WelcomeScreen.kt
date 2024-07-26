@@ -1,4 +1,4 @@
-package se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen
+package se.umu.alro0113.trackandbet.onboarding.presentation.welcome_screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,25 +14,26 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
-import kotlinx.serialization.Serializable
-import se.umu.alro0113.trackandbet.onboarding.presentation.OnboardingViewModel
-import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.NextBackButton
-import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.OnBoardingPage
-import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.PageIndicator
-import se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components.pages
+import se.umu.alro0113.trackandbet.navigation.Screen
+import se.umu.alro0113.trackandbet.onboarding.presentation.welcome_screen.components.NextBackButton
+import se.umu.alro0113.trackandbet.onboarding.presentation.welcome_screen.components.OnBoardingPage
+import se.umu.alro0113.trackandbet.onboarding.presentation.welcome_screen.components.PageIndicator
+import se.umu.alro0113.trackandbet.onboarding.presentation.welcome_screen.components.pages
 
-/*
-@Serializable
-object OnBoardingScreen */
 
-// Uses https://developer.android.com/develop/ui/compose/layouts/pager
 @Composable
-fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {
+fun WelcomeScreen(
+    navController: NavHostController,
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
+        // state for list of 3 pages, with initial page 0
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
         }
@@ -44,6 +45,7 @@ fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {
         }
         Spacer(modifier = Modifier.weight(1f))
 
+        // page indicator and next/back button
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -55,6 +57,8 @@ fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {
                 pageSize = pages.size,
                 selectedPage = currentPage
             )
+
+            // instead of using scope, can have finishbutton as stevdza
             NextBackButton(
                 currentPage = currentPage,
                 onNextClick = {
@@ -67,7 +71,13 @@ fun OnBoardingScreen(onboardingViewModel: OnboardingViewModel) {
                         pagerState.animateScrollToPage(currentPage - 1)
                     }
                 },
-                onGetStartedClick = { onboardingViewModel.saveAppEntry() })
+                // finish onboarding process by storing true in DataStore, and navigate after popping backstack
+                onGetStartedClick = {
+                    welcomeViewModel.saveOnBoardingState(true)
+                    navController.popBackStack()
+                    navController.navigate(Screen.HomeScreen)
+                }
+            )
         }
     }
 }

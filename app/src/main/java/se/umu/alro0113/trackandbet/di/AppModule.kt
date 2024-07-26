@@ -1,8 +1,10 @@
 package se.umu.alro0113.trackandbet.di
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import de.jensklingenberg.ktorfit.Ktorfit
 import io.ktor.client.HttpClient
@@ -15,6 +17,7 @@ import se.umu.alro0113.trackandbet.marketdata.data.remote.DetailsApi
 import se.umu.alro0113.trackandbet.marketdata.data.remote.TickersApi
 import se.umu.alro0113.trackandbet.marketdata.data.remote.createDetailsApi
 import se.umu.alro0113.trackandbet.marketdata.data.remote.createTickersApi
+import se.umu.alro0113.trackandbet.onboarding.data.datastore.DataStoreRepository
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -52,4 +55,10 @@ object AppModule {
     fun provideDetailsApi(ktorfit: Ktorfit): DetailsApi {
         return ktorfit.createDetailsApi()
     }
+
+    @Provides
+    @Singleton
+    fun provideDataStoreRepository(
+        @ApplicationContext context: Context
+    ) = DataStoreRepository(context = context)
 }

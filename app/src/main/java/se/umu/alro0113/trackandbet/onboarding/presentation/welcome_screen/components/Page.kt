@@ -1,4 +1,4 @@
-package se.umu.alro0113.trackandbet.onboarding.presentation.onboarding_screen.components
+package se.umu.alro0113.trackandbet.onboarding.presentation.welcome_screen.components
 
 import androidx.annotation.DrawableRes
 import se.umu.alro0113.trackandbet.R

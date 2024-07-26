@@ -26,17 +26,9 @@ import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailS
 import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersScreen
 import se.umu.alro0113.trackandbet.navigation.Screen
 
-
-/* so will probably make this with object, then compose navigation calls this as startDest
-    Note that this differs from Login Screen, which I will implement later
- */
-/*
-@Serializable
-object HomeScreen*/
-
+// break out from package onboarding for separation of concerns and conssitency
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    Log.d("HomeScreen", "HomeScreen recomposed")
     Surface(
         modifier = Modifier
             .fillMaxSize()
