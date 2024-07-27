@@ -5,17 +5,17 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class Screen {
     @Serializable
-    object WelcomeScreen : Screen()
+    data object WelcomeScreen : Screen()
 
     @Serializable
-    object HomeScreen : Screen()
+    data object HomeScreen : Screen()
 
-    // added argument for detail screen
+    // This screen takes arguments
     @Serializable
     data class DetailScreen(
         val symbol : String
     ) : Screen()
 
     @Serializable
-    object TickersScreen : Screen()
+    data object TickersScreen : Screen()
 }
