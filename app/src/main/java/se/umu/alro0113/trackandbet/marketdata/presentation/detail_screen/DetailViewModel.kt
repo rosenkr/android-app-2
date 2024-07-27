@@ -23,6 +23,7 @@ class DetailViewModel @Inject constructor(
     init {
         _state.value = DetailsViewState()
         getDetails()
+        // TODO I guess need to add getLast50Details() here too. So need interface, implementation
 
     }
 
@@ -32,7 +33,7 @@ class DetailViewModel @Inject constructor(
 
             detailsRepository.getData()
                 .onRight { details ->
-                    _state.postValue(_state.value?.copy(details = details, isLoading = false))
+                    _state.postValue(_state.value?.copy(details = details.data[0], isLoading = false, last100ClosesData = details.data))
                 }
                 .onLeft { error ->
                     _state.postValue(_state.value?.copy(error = error.error.message, isLoading = false))
