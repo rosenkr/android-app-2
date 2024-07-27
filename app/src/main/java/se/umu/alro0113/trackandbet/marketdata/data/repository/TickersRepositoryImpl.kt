@@ -16,8 +16,7 @@ class TickersRepositoryImpl @Inject constructor(
     override suspend fun getTickers(): Either<NetworkError, List<Ticker>> {
         return Either.catch {
             val tickers = tickersApi.getExchangeResponse().data.tickers
-            tickers // returning the list of tickers
-            // tickersApi.getExchangeResponse().data.tickers
+            tickers
         }.mapLeft { it.toNetworkError() }
     }
 }

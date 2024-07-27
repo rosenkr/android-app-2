@@ -22,10 +22,11 @@ fun TrackAndBetNavHost(
         composable<Screen.TickersScreen> {
             TickersScreen(navController = navController)
         }
+        // Compose safe args
         composable<Screen.DetailScreen> {
             val args = it.toRoute<Screen.DetailScreen>()
-            DetailScreen(symbol = args.symbol) // .. "" is just palceholder until user presses ticker in runtime
-        } // TODO AHA MOMENT HERE SEE LACKER NURRENT VIDEO ABOUT ARGS
+            DetailScreen(symbol = args.symbol)
+        }
         composable<Screen.WelcomeScreen> {
             WelcomeScreen(navController = navController)
         }

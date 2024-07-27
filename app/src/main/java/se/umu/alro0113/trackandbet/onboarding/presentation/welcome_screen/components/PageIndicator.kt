@@ -13,7 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-// Custom Page Indicator, 3 indicators, blue if selected
+// Three custom page indicators, blue if selected
 val blueColor = Color(0xFF4285F4)
 @Composable
 fun PageIndicator(

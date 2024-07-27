@@ -33,7 +33,7 @@ fun WelcomeScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        // state for list of 3 pages, with initial page 0
+        // State for list of 3 pages, with initial page 0
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
         }
@@ -45,7 +45,7 @@ fun WelcomeScreen(
         }
         Spacer(modifier = Modifier.weight(1f))
 
-        // page indicator and next/back button
+        // Page indicator and next-back button
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -58,7 +58,6 @@ fun WelcomeScreen(
                 selectedPage = currentPage
             )
 
-            // instead of using scope, can have finishbutton as stevdza
             NextBackButton(
                 currentPage = currentPage,
                 onNextClick = {
@@ -71,7 +70,7 @@ fun WelcomeScreen(
                         pagerState.animateScrollToPage(currentPage - 1)
                     }
                 },
-                // finish onboarding process by storing true in DataStore, and navigate after popping backstack
+                // Finish onboarding process by storing true in DataStore, and navigate after popping backstack
                 onGetStartedClick = {
                     welcomeViewModel.saveOnBoardingState(true)
                     navController.popBackStack()

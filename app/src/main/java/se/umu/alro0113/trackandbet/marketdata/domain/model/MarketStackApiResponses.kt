@@ -1,8 +1,6 @@
 package se.umu.alro0113.trackandbet.marketdata.domain.model
 import kotlinx.serialization.Serializable
 
-// TODO: add serializables for the response from http://api.marketstack.com/v1/eod?access_key=5ebd15bbd5ba4ddfbfd10698ea343f13&symbols=AAPL
-
 @Serializable
 data class DataResponse(
     val pagination: Pagination,

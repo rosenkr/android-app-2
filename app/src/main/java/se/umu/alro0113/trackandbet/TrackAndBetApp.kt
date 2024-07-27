@@ -1,16 +1,11 @@
 package se.umu.alro0113.trackandbet
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavDestination
 import androidx.navigation.compose.rememberNavController
 import se.umu.alro0113.trackandbet.navigation.Screen
 import se.umu.alro0113.trackandbet.navigation.TrackAndBetNavHost

@@ -39,7 +39,7 @@ internal fun DetailScreen(
     state?.let { DetailContent(state = it) }
 }
 
-// End of day stock market details for AAPL ticker on Nasdaq
+// End of day stock market details for a ticker, displays a chart and a card with information
 @Composable
 fun DetailContent(
     modifier: Modifier = Modifier,

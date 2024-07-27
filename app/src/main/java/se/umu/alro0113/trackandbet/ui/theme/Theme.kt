@@ -96,7 +96,7 @@ private val darkScheme = darkColorScheme(
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = false, // set to true to get dynamic colors based of system wallpaper
+    dynamicColor: Boolean = false, // Set to true to get dynamic colors based on the current system wallpaper
     content: @Composable() () -> Unit
 ) {
     val colorScheme = when {
