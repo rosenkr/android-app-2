@@ -1,5 +1,6 @@
 package se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,11 +13,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.delay
 import se.umu.alro0113.trackandbet.marketdata.domain.model.Data
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.LoadingDialog
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTopAppBar
@@ -25,8 +28,13 @@ import kotlin.reflect.full.memberProperties
 
 @Composable
 internal fun DetailScreen(
-    viewModel: DetailViewModel = hiltViewModel()
+    viewModel: DetailViewModel = hiltViewModel(),
+    symbol: String
 ) {
+    LaunchedEffect(symbol) {
+        viewModel.setSymbol(symbol)
+        Log.d("DetailScreen", "Symbol is NOT null or empty")
+    }
     val state by viewModel.state.observeAsState()
     state?.let { DetailContent(state = it) }
 }

@@ -78,7 +78,7 @@ fun ColumnItem(
             .padding(16.dp)
             .fillMaxWidth()
             .clickable {
-                navController.navigate(Screen.DetailScreen)
+                navController.navigate(Screen.DetailScreen(symbol))
                 // navigation works, but we also should simultaneously (asyncly) make api call somehwer
                 // TODO check how/when the initial call for TickersScreen getTickers from api is <actually> made?
             },

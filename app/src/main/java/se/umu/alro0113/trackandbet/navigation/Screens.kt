@@ -10,8 +10,11 @@ sealed class Screen {
     @Serializable
     object HomeScreen : Screen()
 
+    // added argument for detail screen
     @Serializable
-    object DetailScreen : Screen()
+    data class DetailScreen(
+        val symbol : String
+    ) : Screen()
 
     @Serializable
     object TickersScreen : Screen()
