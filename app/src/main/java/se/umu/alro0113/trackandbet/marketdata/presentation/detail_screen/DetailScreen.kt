@@ -33,7 +33,6 @@ internal fun DetailScreen(
 ) {
     LaunchedEffect(symbol) {
         viewModel.setSymbol(symbol)
-        Log.d("DetailScreen", "Symbol is NOT null or empty")
     }
     val state by viewModel.state.observeAsState()
     state?.let { DetailContent(state = it) }
