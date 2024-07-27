@@ -96,7 +96,7 @@ private val darkScheme = darkColorScheme(
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // set to true to get dynamic colors based of system wallpaper
     content: @Composable() () -> Unit
 ) {
     val colorScheme = when {
@@ -113,7 +113,7 @@ fun AppTheme(
     if(!view.isInEditMode){
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.secondary.toArgb()
+            window.statusBarColor = colorScheme.tertiary.toArgb()
             window.navigationBarColor = colorScheme.primary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
