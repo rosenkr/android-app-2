@@ -6,5 +6,6 @@ import se.umu.alro0113.trackandbet.marketdata.domain.model.Data
 data class DetailsViewState(
     val isLoading: Boolean = false,
     val details: Data = Data(0.0, 0.0, 0.0, 0.0, 0.0, "", "", ""),
-    val error: String? = null
+    val error: String? = null,
+    val last100ClosesData: List<Data> = emptyList()
 )
