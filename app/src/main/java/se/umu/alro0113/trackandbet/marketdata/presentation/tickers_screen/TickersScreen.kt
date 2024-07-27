@@ -51,7 +51,8 @@ fun TickersContent(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             MyTopAppBar(title = "Tickers")
-        }
+        },
+        containerColor = MaterialTheme.colorScheme.primaryContainer
     ) {
 
         LazyColumn(
@@ -74,7 +75,7 @@ fun ColumnItem(
 
     Card(
         modifier
-            .padding(10.dp)
+            .padding(16.dp)
             .fillMaxWidth()
             .clickable {
                 navController.navigate(Screen.DetailScreen)
@@ -82,15 +83,16 @@ fun ColumnItem(
                 // TODO check how/when the initial call for TickersScreen getTickers from api is <actually> made?
             },
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary
         ),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp), // Optional padding inside the Box
-            contentAlignment = Alignment.Center // Center the content inside the Box
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
         ) {
             Text(
                 text = symbol,

@@ -23,15 +23,15 @@ class DetailViewModel @Inject constructor(
     init {
         _state.value = DetailsViewState()
         getDetails()
-        // TODO I guess need to add getLast50Details() here too. So need interface, implementation
 
     }
 
+    // TODO should take ticker arg?
     fun getDetails(){
         viewModelScope.launch {
             _state.postValue(_state.value?.copy(isLoading = true))
 
-            detailsRepository.getData()
+            detailsRepository.getData() //
                 .onRight { details ->
                     _state.postValue(_state.value?.copy(details = details.data[0], isLoading = false, last100ClosesData = details.data))
                 }

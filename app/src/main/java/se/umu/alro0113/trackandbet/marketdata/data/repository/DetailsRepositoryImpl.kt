@@ -13,7 +13,6 @@ class DetailsRepositoryImpl @Inject constructor(
     private val detailsApi: DetailsApi
 ): DetailsRepository {
 
-    // TODO must consider how vico wants full data array, while the card only wants .data[0]
     override suspend fun getData(): Either<NetworkError, DataResponse> {
         return Either.catch {
             val eodData = detailsApi.getDataResponse()
