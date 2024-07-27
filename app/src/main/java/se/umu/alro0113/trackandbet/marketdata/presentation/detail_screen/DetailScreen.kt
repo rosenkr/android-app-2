@@ -10,7 +10,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,18 +17,11 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.serialization.Serializable
 import se.umu.alro0113.trackandbet.marketdata.domain.model.Data
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.LoadingDialog
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTopAppBar
+import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.VicoChart
 import kotlin.reflect.full.memberProperties
-
-
-// TODO not sure about the argument symbol. Keep in mind,currently I have hardcoded AAPL. Ideally, ScreenB is called with arg, or atleast the api call
-// TODO should know which ticker to find details about, but perhaps I dont have to do ScreenB(theticker).
-// TODO also, do I need to have navController here? In case the "back" button requires it for back stack entry stuff
-/*@Serializable
-object DetailScreen*/
 
 @Composable
 internal fun DetailScreen(
@@ -39,7 +31,7 @@ internal fun DetailScreen(
     state?.let { DetailContent(state = it) }
 }
 
-
+// End of day stock market details for AAPL ticker on Nasdaq
 @Composable
 fun DetailContent(
     modifier: Modifier = Modifier,
@@ -58,10 +50,7 @@ fun DetailContent(
                 .padding(top = it.calculateTopPadding()),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ){
-            Surface(modifier.fillMaxWidth(), color = MaterialTheme.colorScheme.primary) {
-                // TODO generateVico(state) where the function is a composeable
-            }
-
+            VicoChart(last100ClosesData = state.last100ClosesData)
             DetailsCard(details = state.details)
         }
     }
@@ -71,7 +60,7 @@ fun DetailContent(
 fun DetailsCard(modifier: Modifier = Modifier, details: Data) {
     Card(
         modifier = modifier
-            .padding(10.dp)
+            .padding(16.dp, 0.dp)
             .fillMaxWidth(),
         colors = CardDefaults.cardColors()
     ) {
