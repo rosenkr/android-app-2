@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+Todos.txt
+app/info.txt
