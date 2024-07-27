@@ -21,8 +21,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-            // On app startup, display a splash screen with a default white icon
-            installSplashScreen()
+        // On app startup, display a splash screen with an Android default white icon
+        installSplashScreen()
 
         enableEdgeToEdge()
         setContent {
