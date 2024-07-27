@@ -3,10 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
-
     id("com.google.dagger.hilt.android") version "2.49"
-
-    // ktorfit instead of retrofit for handling DI with the httlp client
     id("com.google.devtools.ksp")
     id("de.jensklingenberg.ktorfit") version "2.0.0"
 }
@@ -58,7 +55,6 @@ android {
 }
 
 dependencies {
-    // defaults
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -76,41 +72,39 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    /* not using yet*/
     implementation(libs.vico.compose.m3) // charts and graphs
     implementation(libs.androidx.ui.text.google.fonts) // text fonts
     implementation(libs.androidx.appcompat)
 
-    // ktor for client-side
+    // Ktor for client-side
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.content.negotiation)
 
-    // general json handling and compose safe args navigation
+    // General json handling and compose safe args navigation
     implementation(libs.kotlinx.serialization.json)
 
-    // Dagger/Hilt
+    // Dagger/Hilt using ksp instead of kapt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
 
-    // Arrow for "Either" instead of try catch
+    // Arrow for "Either" blocks instead of regular try-catches, less verbose
     implementation(libs.arrow.core)
     implementation(libs.arrow.fx.coroutines)
 
-    // ktorfit for DI
+    // Ktorfit for retrofit-like dependency injection with ktor
     implementation(libs.ktorfit.lib)
 
-    // 2.8.0 beta navigation with safe args like in xml
+    // 2.8.0 beta version, navigation with safe args, similar to safe args in xml
     implementation(libs.androidx.navigation.compose)
 
-    // reflection to extract member variable name for labels in a composable
+    // Reflection to extract member variable name for labels in a composable
     implementation(libs.kotlin.reflect)
 
-    // api instead of implementation is only relevant
-    // for KMP projects with different source sets such as android,desktop,ios
+    // Api instead of implementation is only relevant for KMP projects with different source sets such as android,desktop,ios
     api(libs.datastore.preferences)
     api(libs.datastore)
 
