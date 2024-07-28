@@ -109,13 +109,17 @@ fun AppTheme(
         else -> lightScheme
     }
 
+
+    // Make sure the system status and navigation bars are always surfaceBright for my theme
+    // which is a dark gray tone on dark-mode, or a near full white tone on light-mode
+    // and the text is dark on bright or bright on dark. For all screens of the app.
     val view = LocalView.current
     if(!view.isInEditMode){
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            window.navigationBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            window.statusBarColor = colorScheme.surfaceBright.toArgb()
+            window.navigationBarColor = colorScheme.surfaceBright.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 
