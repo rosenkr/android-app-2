@@ -1,6 +1,5 @@
 package se.umu.alro0113.trackandbet.marketdata.presentation.util.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,7 +12,6 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
@@ -25,32 +23,14 @@ import com.patrykandpatrick.vico.compose.component.shape.shader.fromBrush
 import com.patrykandpatrick.vico.compose.style.ProvideChartStyle
 import com.patrykandpatrick.vico.core.axis.AxisItemPlacer
 import com.patrykandpatrick.vico.core.chart.line.LineChart
-import com.patrykandpatrick.vico.core.chart.values.AxisValuesOverrider
 import com.patrykandpatrick.vico.core.component.shape.shader.DynamicShaders
-import com.patrykandpatrick.vico.core.entry.ChartEntryModel
 import com.patrykandpatrick.vico.core.entry.ChartEntryModelProducer
 import com.patrykandpatrick.vico.core.entry.FloatEntry
 import se.umu.alro0113.trackandbet.marketdata.domain.model.Data
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 
-// TODO fix line thickness, remove charts vertical/horizontal layout lines
-// TODO set axis min/max y values as dependent on the minimum and maximum of the 100 days closes, add a buffer of 10%
-// TODO add shader ( see video ) and its like avanzas
-// LineChart.targetVerticalAxisPosition ?
-
-// TODO figure out if can do asynchronous work, as loading the graph is takming time
-// TODO realization: Lets define a view scope, the chart recomposes when the view scope changes
-// TODO so under the actual chart the user can choose "1 day" or "1 week" or "1 month"
-// TODO and when they click it, the view scope changes. The view scope determines how zoomed out the chart is
-// TODO but there is also the option for the user, through a dropdown button, to choose how many data points there is
-// TODO per view scope. So the combination 1 month + 1 day will show about 23 ish END OF DAY IN MY CASE datapoints!
-// VicoChart but currently has state and stuff in it
-// Also right now its being built by a call to AAPL end of day ticker, 50 last days.
 @Composable
 fun VicoChart(last100ClosesData : List<Data>){
     // Dataset
-    // hoist state elsewhere later, take it as param here, remember this VicoChart is just a component composable for the DetailScreen
     val modelProducer = remember { ChartEntryModelProducer() }
     val datasetForModel = remember { mutableStateListOf(listOf<FloatEntry>()) }
     val datasetLineSpec = remember{ arrayListOf<LineChart.LineSpec>()}
