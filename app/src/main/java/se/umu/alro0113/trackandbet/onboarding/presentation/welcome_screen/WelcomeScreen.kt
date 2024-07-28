@@ -73,7 +73,7 @@ fun WelcomeScreen(
                 // Finish onboarding process by storing true in DataStore, and navigate after popping backstack
                 onGetStartedClick = {
                     welcomeViewModel.saveOnBoardingState(true)
-                    navController.popBackStack()
+                    navController.popBackStack() // disallow back tracking to the onboarding screens
                     navController.navigate(Screen.HomeScreen)
                 }
             )
