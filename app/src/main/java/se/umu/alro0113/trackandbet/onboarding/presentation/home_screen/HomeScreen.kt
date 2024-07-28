@@ -1,72 +1,96 @@
 package se.umu.alro0113.trackandbet.onboarding.presentation.home_screen
 
-import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
-import kotlinx.serialization.Serializable
-import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailScreen
-import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersScreen
 import se.umu.alro0113.trackandbet.navigation.Screen
 
-// break out from package onboarding for separation of concerns and conssitency
+// TODO set up viewmodel for homescreen and move state from here to there,
+// TODO call hiltViewModel here and use state/set its state
+// TODO be consistent with other screen packages, have a separate HomeScreenState file
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    Surface(
-        modifier = Modifier
-            .fillMaxSize()
+    var selectedItemIndex by rememberSaveable {
+        mutableStateOf(0)
+    }
+    Surface( // background color is defaulted to .surface which is same as .background
+        modifier = Modifier.fillMaxSize(),
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Button(
-                onClick = {
-                    navController.navigate(Screen.TickersScreen)
+        Scaffold(
+            bottomBar = {
+                NavigationBar() {
+                    items.forEachIndexed { index, item ->
+                        NavigationBarItem(
+                            selected = selectedItemIndex == index,
+                            onClick = {
+                                selectedItemIndex = index
+                                navController.navigate(item.route)
+                            },
+                            icon = {
+                                if(index == selectedItemIndex){
+                                    Icon(
+                                        imageVector = item.selectedIcon,
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(25.dp)
+                                    )
+                                } else {
+                                    Icon(
+                                        imageVector = item.unselectedIcon,
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(25.dp)
+                                    )
+                                }
+                            },
+                            label = { Text(text = item.title) }
+                        )
+                    }
                 }
-            ) {
-                Text(text = "Go to tickers screen")
             }
-            Icon(
-                imageVector = Icons.Rounded.Home,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(60.dp)
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            Text(text = "Home Screen",
-                style = MaterialTheme.typography.headlineLarge
-            )
+        ) { paddingValues ->
+            Box(modifier = Modifier.fillMaxSize().padding(paddingValues).border(2.dp, Color.Red)){
+                Text(text = "content")
+            }
         }
     }
 }
 
-/*
-force recomposition ? @Composable
-fun ForceRecompositionTrigger() {
-    val state by remember { mutableStateOf(Unit) }
-    LaunchedEffect(state) {
-        // This will force recomposition when the state changes
-        // Use this for testing purposes
-    }
-}
- */
+val items = listOf(
+    BottomNavigationItem("Home", Icons.Filled.Home, Icons.Outlined.Home, Screen.HomeScreen),
+    BottomNavigationItem("Placeholder", Icons.Filled.Build, Icons.Outlined.Build, Screen.HomeScreen),
+    BottomNavigationItem("Tickers", Icons.Filled.Search, Icons.Outlined.Search, Screen.TickersScreen)
+)
+
+// but see NavigationBarItem M3 composable? Lackner first has this then + NavigationBarItem later
+data class BottomNavigationItem(
+    val title: String,
+    val selectedIcon: ImageVector, // Icons.Filled ..
+    val unselectedIcon: ImageVector, // Icons.Outlined.
+    val route: Screen
+)
