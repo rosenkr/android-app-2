@@ -85,18 +85,16 @@ fun VicoChart(last100ClosesData : List<Data>){
     datasetForModel.add(dataPoints)
     modelProducer.setEntries(datasetForModel)
 
-    // TODO change this to be adaptive to the current tickers max and min values in 100 days
-    val axisValuesOverrider = CustomAxisValuesOverrider(
-        minY = 160f,  // Set your desired min value for y-axis
-        maxY = 240f   // Set your desired max value for y-axis
-    )
+    val axisValuesOverrider = calculateAxisValuesOverrider(last100ClosesData)
+    val symbol = if (last100ClosesData.isNotEmpty()) last100ClosesData[0].symbol else ""
+
     // Creating the vico graph inside a Card
     Card(modifier = Modifier
         .fillMaxWidth()
         .height(350.dp)
         .padding(16.dp, 16.dp, 16.dp),
     ) {
-        Text(text = "AAPL last 100 trading days closing values")
+        Text(text = "$symbol last 100 trading days closing values")
         if(datasetForModel.isNotEmpty()){  // just-in-case guarding
             // styling the chart, see api/docs for customizing
             ProvideChartStyle {
@@ -134,4 +132,3 @@ fun VicoChart(last100ClosesData : List<Data>){
         }
     }
 }
-
