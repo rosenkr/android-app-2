@@ -12,6 +12,7 @@ object EventBus {
     }
 }
 
+// Possibility to expand with more events
 sealed interface Event {
     data class Toast(val message: String): Event
 }

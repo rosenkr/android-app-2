@@ -7,6 +7,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -20,21 +27,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import kotlinx.serialization.Serializable
-import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailScreen
+import androidx.navigation.NavHostController
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.LoadingDialog
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTopAppBar
 import se.umu.alro0113.trackandbet.navigation.Screen
-
-// temp for testing compose navigation with safe args since ver 2.8.0, may break out the objects
-// for screens into navigation.screns ?
-/*@Serializable
-object TickersScreen*/
-
+import se.umu.alro0113.trackandbet.util.BottomNavigationItem
+import se.umu.alro0113.trackandbet.util.MyBottomNavBar
 
 @Composable
 internal fun TickersScreen(
-    navController: NavController,
+    navController: NavHostController,
     viewModel: TickersViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.observeAsState()
@@ -43,16 +45,26 @@ internal fun TickersScreen(
 
 @Composable
 fun TickersContent(
-    navController: NavController,
-    state: TickersViewState,
+    navController: NavHostController,
+    state: TickersViewState
 ) {
+    val items = listOf(
+        BottomNavigationItem("Home", Icons.Filled.Home, Icons.Outlined.Home, Screen.HomeScreen),
+        BottomNavigationItem("Placeholder", Icons.Filled.Build, Icons.Outlined.Build, Screen.HomeScreen),
+        BottomNavigationItem("Tickers", Icons.Filled.Search, Icons.Outlined.Search, Screen.TickersScreen)
+    )
+
+    val myPosition = 2
+
     LoadingDialog(isLoading = state.isLoading)
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             MyTopAppBar(title = "Tickers")
         },
-        containerColor = MaterialTheme.colorScheme.primaryContainer
+        bottomBar = {
+            MyBottomNavBar(items = items, navController = navController, selectedItemIndex = myPosition)
+        }
     ) {
 
         LazyColumn(
@@ -79,13 +91,7 @@ fun ColumnItem(
             .fillMaxWidth()
             .clickable {
                 navController.navigate(Screen.DetailScreen(symbol))
-                // navigation works, but we also should simultaneously (asyncly) make api call somehwer
-                // TODO check how/when the initial call for TickersScreen getTickers from api is <actually> made?
             },
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
-        ),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
         Box(

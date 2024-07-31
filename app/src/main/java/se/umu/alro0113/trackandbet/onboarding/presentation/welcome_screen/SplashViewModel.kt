@@ -13,9 +13,6 @@ import se.umu.alro0113.trackandbet.navigation.Screen
 import se.umu.alro0113.trackandbet.onboarding.data.datastore.DataStoreRepository
 import javax.inject.Inject
 
-// to be compliant with the rest of the project, ideally the viewmodel should expose a
-// state variable, through which all types of state can be accessed,
-// however for simplicity, since there is only 1 state value startDestination, it is currently kept here
 class SplashViewModel @Inject constructor(
     private val repository: DataStoreRepository
 ) : ViewModel() {

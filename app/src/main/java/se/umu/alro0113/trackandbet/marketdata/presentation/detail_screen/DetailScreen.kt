@@ -1,6 +1,5 @@
 package se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +18,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.coroutines.delay
 import se.umu.alro0113.trackandbet.marketdata.domain.model.Data
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.LoadingDialog
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTopAppBar

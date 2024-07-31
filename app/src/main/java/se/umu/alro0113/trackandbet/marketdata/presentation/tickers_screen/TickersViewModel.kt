@@ -1,6 +1,5 @@
 package se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

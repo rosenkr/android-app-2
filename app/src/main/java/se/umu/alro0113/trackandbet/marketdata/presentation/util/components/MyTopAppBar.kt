@@ -1,10 +1,9 @@
 package se.umu.alro0113.trackandbet.marketdata.presentation.util.components
 
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -18,9 +17,6 @@ fun MyTopAppBar(
     TopAppBar(
         title = { Text(text = title) },
         modifier = Modifier.shadow(elevation = 5.dp),
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary, // Background color
-            titleContentColor = MaterialTheme.colorScheme.onPrimary // Text color
-        )
     )
+    HorizontalDivider()
 }
