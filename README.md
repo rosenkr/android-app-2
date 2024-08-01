@@ -7,7 +7,7 @@ In the future, the project intends to include a server-side which fetches live
 data from stock market APIs, stores historic data in a database in the cloud, and makes that data available to clients,
 thus the client should not need their own key.
 
-The idea of the app is to tap a fairly untapped and growing market by taking advantage of the recent gamblifying of the stock market which was otherwise historically seen as something serious and separable from old fashioned gambling. Since Covid and the QE that followed, young people sitting at home found with money to spend and boredom to quench, found their way to stock market instruments that track underlying assets. This trading is effectively filling the role of gambling for many, under the guise of skill. 
+The idea of the app is to tap a fairly untapped and growing market by taking advantage of the recent gamblifying of the stock market which was otherwise historically seen as something serious and separable from old fashioned gambling. Since Covid and the QE that followed, young people with extra cash sitting at home found their way to leveraged stock market instruments that track underlying assets. This trading is effectively filling the role of gambling for many, under the guise of skill. 
 
 The app aims to game-ify trading (the meaning of this term is yet to be explored in the apps context, but it should be something that is opposite of the boring flows and UI's of apps that exist today: Avanza, Nordnet, etc. These are not mobile-friendly is my subjective feeling.)
 
