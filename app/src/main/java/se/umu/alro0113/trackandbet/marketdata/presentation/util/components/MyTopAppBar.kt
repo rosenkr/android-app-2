@@ -43,17 +43,10 @@ fun GradientTop(content: @Composable () -> Unit) {
             .fillMaxWidth()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = if (isSystemInDarkTheme()) {
-                        listOf(
-                            Color.Black,
-                            topAppBarDefaultBackground
-                        )
-                    } else {
-                        listOf(
-                            Color.White,
-                            topAppBarDefaultBackground
-                        )
-                    }
+                    colors = listOf(
+                        MaterialTheme.colorScheme.surfaceBright,
+                        topAppBarDefaultBackground
+                    )
                 )
             )
     ) {

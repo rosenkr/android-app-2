@@ -17,4 +17,7 @@ sealed class Screen {
 
     @Serializable
     data object TickersScreen : Screen()
+
+    @Serializable
+    data object StatsScreen : Screen()
 }

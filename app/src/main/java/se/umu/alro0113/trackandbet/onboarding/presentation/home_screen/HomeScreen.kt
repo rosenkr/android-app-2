@@ -4,11 +4,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Analytics
 import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Place
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -20,15 +24,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTopAppBar
 import se.umu.alro0113.trackandbet.navigation.Screen
+import se.umu.alro0113.trackandbet.ui.theme.baseline
 import se.umu.alro0113.trackandbet.util.BottomNavigationItem
 import se.umu.alro0113.trackandbet.util.MyBottomNavBar
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
-
     val items = listOf(
         BottomNavigationItem("Home", Icons.Filled.Home, Icons.Outlined.Home, Screen.HomeScreen),
-        BottomNavigationItem("Placeholder", Icons.Filled.Build, Icons.Outlined.Build, Screen.HomeScreen),
+        BottomNavigationItem("Stats", Icons.Filled.Analytics, Icons.Outlined.Analytics, Screen.StatsScreen),
         BottomNavigationItem("Tickers", Icons.Filled.Search, Icons.Outlined.Search, Screen.TickersScreen)
     )
 

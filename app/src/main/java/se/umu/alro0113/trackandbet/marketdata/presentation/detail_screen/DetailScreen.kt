@@ -36,6 +36,7 @@ internal fun DetailScreen(
     state?.let { DetailContent(state = it) }
 }
 
+
 // End of day stock market details for a ticker, displays a chart and a card with information
 @Composable
 fun DetailContent(

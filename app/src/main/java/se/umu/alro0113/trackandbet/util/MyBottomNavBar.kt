@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
-
 @Composable
 fun MyBottomNavBar(items : List<BottomNavigationItem>, selectedItemIndex : Int, navController : NavHostController){
     Column {
@@ -60,7 +59,7 @@ fun MyBottomNavBar(items : List<BottomNavigationItem>, selectedItemIndex : Int, 
     }
 }
 
-
+// Bottom nav bar gradient towards system bottom bar
 @Composable
 fun GradientBottom(content: @Composable () -> Unit) {
     val bottomNavBarDefaultBackground =  NavigationBarDefaults.containerColor
@@ -70,17 +69,10 @@ fun GradientBottom(content: @Composable () -> Unit) {
             .fillMaxWidth()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = if (isSystemInDarkTheme()) {
-                        listOf(
-                            bottomNavBarDefaultBackground,
-                            Color.Black
-                        )
-                    } else {
-                        listOf(
-                            bottomNavBarDefaultBackground,
-                            Color.White
-                        )
-                    }
+                    colors = listOf(
+                        bottomNavBarDefaultBackground,
+                        MaterialTheme.colorScheme.surfaceBright
+                    )
                 )
             )
     ) {

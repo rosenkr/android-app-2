@@ -9,6 +9,7 @@ import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailS
 import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersScreen
 import se.umu.alro0113.trackandbet.onboarding.presentation.home_screen.HomeScreen
 import se.umu.alro0113.trackandbet.onboarding.presentation.welcome_screen.WelcomeScreen
+import se.umu.alro0113.trackandbet.stats.presentation.StatsScreen
 
 @Composable
 fun TrackAndBetNavHost(
@@ -22,7 +23,7 @@ fun TrackAndBetNavHost(
         composable<Screen.TickersScreen> {
             TickersScreen(navController = navController)
         }
-        // Compose safe args
+
         composable<Screen.DetailScreen> {
             val args = it.toRoute<Screen.DetailScreen>()
             DetailScreen(symbol = args.symbol)
@@ -32,6 +33,9 @@ fun TrackAndBetNavHost(
         }
         composable<Screen.HomeScreen> {
             HomeScreen(navController = navController)
+        }
+        composable<Screen.StatsScreen> {
+            StatsScreen(navController = navController)
         }
     }
 }
