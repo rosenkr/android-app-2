@@ -40,3 +40,4 @@ class TickersViewModel @Inject constructor(
         }
     }
 }
+

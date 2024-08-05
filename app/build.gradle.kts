@@ -7,6 +7,7 @@ plugins {
     id("com.google.dagger.hilt.android") version "2.49"
     id("com.google.devtools.ksp")
     id("de.jensklingenberg.ktorfit") version "2.0.0"
+    //id("androidx.room") version "2.6.1" apply false // Add this line to the top of your build.gradle file
 }
 
 android {
@@ -123,4 +124,8 @@ dependencies {
     // Splash Screen
     implementation(libs.androidx.core.splashscreen)
 
+    // Room, may need kapt if errors appear https://developer.android.com/training/data-storage/room
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }

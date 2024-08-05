@@ -26,7 +26,7 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch { _state.postValue(_state.value?.copy(symbol = symbol)) }
         getDetails(symbol)
     }
-    // TODO should take ticker arg?
+
     fun getDetails(symbol : String){
         viewModelScope.launch {
             _state.postValue(_state.value?.copy(isLoading = true))

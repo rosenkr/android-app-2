@@ -52,7 +52,7 @@ fun TickersContent(
 ) {
     val items = listOf(
         BottomNavigationItem("Home", Icons.Filled.Home, Icons.Outlined.Home, Screen.HomeScreen),
-        BottomNavigationItem("Stats", Icons.Filled.Analytics, Icons.Outlined.Analytics, Screen.StatsScreen),
+        BottomNavigationItem("Transactions", Icons.Filled.Analytics, Icons.Outlined.Analytics, Screen.TransactionsScreen),
         BottomNavigationItem("Tickers", Icons.Filled.Search, Icons.Outlined.Search, Screen.TickersScreen)
     )
 

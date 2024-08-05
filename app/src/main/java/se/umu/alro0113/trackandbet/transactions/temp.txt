@@ -1,0 +1,15 @@
+Stats is a screen on the bottom nav bar which intends to show historic data for a
+particular user (ROI, number of trades made, total return/loss, etc)
+
+For now, I will use a local cache using Room database locally.
+Benefits is that user can close app completely and still see their stats when enter app
+Currently 1 user per phone, as I have no way to distinguish users
+
+In the long run, a local cache may be undesired, as I intend on having a remote database
+storage.
+
+a local cached pages content can have pulldown to refresh which either makes a new api call
+to update the cache, or updates the local cache with data from a a remote db
+(depending on what table/info we are talking about)
+
+Stats table should relate to a Transaction table somehow.

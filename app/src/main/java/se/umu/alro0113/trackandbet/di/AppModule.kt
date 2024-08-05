@@ -1,6 +1,8 @@
 package se.umu.alro0113.trackandbet.di
 
+import android.app.Application
 import android.content.Context
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +20,10 @@ import se.umu.alro0113.trackandbet.marketdata.data.remote.TickersApi
 import se.umu.alro0113.trackandbet.marketdata.data.remote.createDetailsApi
 import se.umu.alro0113.trackandbet.marketdata.data.remote.createTickersApi
 import se.umu.alro0113.trackandbet.onboarding.data.datastore.DataStoreRepository
+import se.umu.alro0113.trackandbet.transactions.data.local.AppDatabase
+import se.umu.alro0113.trackandbet.transactions.data.remote.TransactionsApi
+import se.umu.alro0113.trackandbet.transactions.data.remote.createTransactionsApi
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -61,4 +67,26 @@ object AppModule {
     fun provideDataStoreRepository(
         @ApplicationContext context: Context
     ) = DataStoreRepository(context = context)
+
+    @Provides
+    @Singleton
+    fun provideTransactionsApi(): TransactionsApi {
+        val httpClient = HttpClient(CIO) {
+            defaultRequest { url("http://10.0.2.2:3000/") }
+            install(ContentNegotiation) {
+                json(Json { isLenient = true; ignoreUnknownKeys = true })
+            }
+        }
+        return Ktorfit.Builder().httpClient(httpClient).baseUrl("http://10.0.2.2:3000/").build().createTransactionsApi()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(app: Application): AppDatabase {
+        return Room.databaseBuilder(
+            app,
+            AppDatabase::class.java,
+            "appdb.db"
+        ).build()
+    }
 }
