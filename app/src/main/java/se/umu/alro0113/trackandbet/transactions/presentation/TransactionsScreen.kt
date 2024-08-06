@@ -19,13 +19,17 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -61,7 +65,27 @@ fun TransactionsScreen(
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
-                MyTopAppBar(title = "Transactions")
+                MyTopAppBar(title = "Transactions", actions = { OutlinedTextField(
+                    value = state.searchQuery,
+                    onValueChange = {
+                        viewModel.onEvent(TransactionEvent.OnSearchQueryChange(it))
+                    },
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .width(210.dp)
+                    ,
+                    placeholder = {
+                        Text(text = "Search...", style = mySearchTextStyle())
+                    },
+                    maxLines = 1,
+                    singleLine = true,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedBorderColor = MaterialTheme.colorScheme.secondaryContainer,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        focusedBorderColor = MaterialTheme.colorScheme.secondaryContainer,
+                        focusedTextColor = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
+                ) })
             },
             bottomBar = {
                 MyBottomNavBar(items = items, navController = navController, selectedItemIndex = myPosition)
@@ -70,21 +94,6 @@ fun TransactionsScreen(
             Column(modifier = Modifier
                 .fillMaxSize()
                 .padding(top = it.calculateTopPadding(), bottom = it.calculateBottomPadding())){ // pad both ends to see all items
-                OutlinedTextField(
-                    value = state.searchQuery,
-                    onValueChange = {
-                        viewModel.onEvent(TransactionEvent.OnSearchQueryChange(it))
-                    },
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                    ,
-                    placeholder = {
-                        Text(text = "Search")
-                    },
-                    maxLines = 1,
-                    singleLine = true
-                )
 
                 PullToRefreshLazyColumn(
                     items = state.transactions,
@@ -151,4 +160,14 @@ fun TransactionItem(
         }
 
     }
+}
+
+@Composable
+fun mySearchTextStyle(): TextStyle {
+    return TextStyle(
+        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f),
+        fontSize = 18.sp,
+        letterSpacing = 0.5.sp,
+        lineHeight = 22.sp
+    )
 }

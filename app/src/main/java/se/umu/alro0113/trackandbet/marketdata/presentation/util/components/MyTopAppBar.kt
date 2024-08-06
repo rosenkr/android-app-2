@@ -3,6 +3,7 @@ package se.umu.alro0113.trackandbet.marketdata.presentation.util.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -19,13 +20,15 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyTopAppBar(
-    title: String
+    title: String,
+    actions: @Composable() (RowScope.() -> Unit) = {},
 ) {
     Column {
         GradientTop {
             TopAppBar(
                 title = { Text(text = title) },
-                colors = TopAppBarColors(containerColor = Color.Transparent, actionIconContentColor = Color.Red, navigationIconContentColor = Color.Black, scrolledContainerColor = Color.Black, titleContentColor = MaterialTheme.colorScheme.onSurface)
+                colors = TopAppBarColors(containerColor = Color.Transparent, actionIconContentColor = Color.Red, navigationIconContentColor = Color.Black, scrolledContainerColor = Color.Black, titleContentColor = MaterialTheme.colorScheme.onSurface),
+                actions = actions
             )
         }
         HorizontalDivider(thickness = 1.7.dp)
