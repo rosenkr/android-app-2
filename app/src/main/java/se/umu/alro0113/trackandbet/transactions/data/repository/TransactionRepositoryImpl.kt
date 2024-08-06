@@ -41,6 +41,7 @@ class TransactionRepositoryImpl @Inject constructor(
                 dao.insertTransactions(transactionz.map { it.toTransaction() })
                 transactionz // return list from remote/api
             }
-        }.mapLeft { it.toNetworkError() }
+        }.mapLeft {
+            it.toNetworkError() }
     }
 }

@@ -1,7 +1,6 @@
 package se.umu.alro0113.trackandbet.transactions.presentation
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.Home
@@ -18,28 +16,23 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Analytics
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
-import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import kotlinx.coroutines.delay
+import se.umu.alro0113.trackandbet.common.composables.PullToRefreshLazyColumn
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.LoadingDialog
 import se.umu.alro0113.trackandbet.marketdata.presentation.util.components.MyTopAppBar
 import se.umu.alro0113.trackandbet.navigation.Screen
@@ -47,31 +40,22 @@ import se.umu.alro0113.trackandbet.transactions.domain.model.Transaction
 import se.umu.alro0113.trackandbet.util.BottomNavigationItem
 import se.umu.alro0113.trackandbet.util.MyBottomNavBar
 
-@OptIn(ExperimentalMaterial3Api::class)
+// did not use internal fun to separate viewmodel and state because want to access viewModel.onEvent() inside the screen
 @Composable
 fun TransactionsScreen(
     navController: NavHostController,
     viewModel: TransactionsViewModel = hiltViewModel()
 
 ){
+    val items = listOf(
+        BottomNavigationItem("Home", Icons.Filled.Home, Icons.Outlined.Home, Screen.HomeScreen),
+        BottomNavigationItem("Transactions", Icons.Filled.Analytics, Icons.Outlined.Analytics, Screen.TransactionsScreen),
+        BottomNavigationItem("Tickers", Icons.Filled.Search, Icons.Outlined.Search, Screen.TickersScreen)
+    )
+    val myPosition = 1
+
     val state by viewModel.state.observeAsState()
     state?.let { state ->
-        val pullToRefreshState = rememberPullToRefreshState()
-        if(pullToRefreshState.isRefreshing){
-            LaunchedEffect(true) {
-                // todo this is basically our onRefresh below
-                delay(1000)
-                pullToRefreshState.endRefresh()
-            }
-        }
-
-        val items = listOf(
-            BottomNavigationItem("Home", Icons.Filled.Home, Icons.Outlined.Home, Screen.HomeScreen),
-            BottomNavigationItem("Transactions", Icons.Filled.Analytics, Icons.Outlined.Analytics, Screen.TransactionsScreen),
-            BottomNavigationItem("Tickers", Icons.Filled.Search, Icons.Outlined.Search, Screen.TickersScreen)
-        )
-
-        val myPosition = 1
 
         LoadingDialog(isLoading = state.isLoading)
         Scaffold(
@@ -83,48 +67,47 @@ fun TransactionsScreen(
                 MyBottomNavBar(items = items, navController = navController, selectedItemIndex = myPosition)
             }
         ) {
-            Column(modifier = Modifier.fillMaxSize().padding(top = it.calculateTopPadding())){
+            Column(modifier = Modifier
+                .fillMaxSize()
+                .padding(top = it.calculateTopPadding(), bottom = it.calculateBottomPadding())){ // pad both ends to see all items
                 OutlinedTextField(
-                    value = state.searchQuery.toString(),
+                    value = state.searchQuery,
                     onValueChange = {
                         viewModel.onEvent(TransactionEvent.OnSearchQueryChange(it))
                     },
                     modifier = Modifier
-                        .padding(12.dp)
+                        .padding(16.dp)
                         .fillMaxWidth()
                     ,
                     placeholder = {
-                        Text(text = "Search") // doesnt work because I am working with INts, need to figure it out
+                        Text(text = "Search")
                     },
                     maxLines = 1,
                     singleLine = true
                 )
 
-
-                Box(modifier = Modifier.nestedScroll(pullToRefreshState.nestedScrollConnection)) {
-                    LazyColumn(modifier = Modifier
-                        .fillMaxSize()) {
-                        items(state.transactions.size) { i ->
-                            val transaction = state.transactions[i]
+                PullToRefreshLazyColumn(
+                    items = state.transactions,
+                    content = { transaction ->
+                        Column {
                             TransactionItem(
                                 transaction = transaction,
-                                modifier = Modifier.
-                                fillMaxWidth().
-                                padding(16.dp).
-                                clickable {
-                                    // TODO if weant to add navigation to somewhere
-                                }
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(24.dp)
+                                    .clickable {
+                                        // TODO add navigation if wanted, although the transactions feature was just for learning, not really of interest
+                                    }
                             )
-                            if(i < state.transactions.size){
+                            // Check the index for adding divider
+                            val index = state.transactions.indexOf(transaction)
+                            if (index < state.transactions.size - 1) {
                                 HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
                             }
                         }
-                    }
-                    PullToRefreshContainer(
-                        modifier = Modifier.align(Alignment.TopCenter),
-                        state = pullToRefreshState,
-                    )
-                }
+                    },
+                    isRefreshing = state.isRefreshing, // todo isRefreshing ?
+                    onRefresh = { viewModel.onEvent(TransactionEvent.Refresh) } )
             }
         }
     }
@@ -169,34 +152,3 @@ fun TransactionItem(
 
     }
 }
-/*
-Scaffold(
-topBar = {
-    TopAppBar(
-        title = { Text("Title") },
-        // Provide an accessible alternative to trigger refresh.
-        actions = {
-            IconButton(
-                enabled = !viewModel.isRefreshing,
-                onClick = { viewModel.refresh() },
-            ) {
-                Icon(Icons.Filled.Refresh, "Trigger Refresh")
-            }
-        },
-    )
-},
-) {
-    PullToRefreshBox(
-        modifier = Modifier.padding(it),
-        isRefreshing = viewModel.isRefreshing,
-        onRefresh = { viewModel.refresh() },
-    ) {
-        LazyColumn(Modifier.fillMaxSize()) {
-            if (!viewModel.isRefreshing) {
-                items(viewModel.itemCount) {
-                    ListItem({ Text(text = "Item ${viewModel.itemCount - it}") })
-                }
-            }
-        }
-    }
-}*/

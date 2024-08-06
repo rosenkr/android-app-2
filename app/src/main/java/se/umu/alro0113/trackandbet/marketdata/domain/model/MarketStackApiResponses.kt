@@ -1,9 +1,6 @@
 package se.umu.alro0113.trackandbet.marketdata.domain.model
 import kotlinx.serialization.Serializable
 
-// TODO break out to under data/remote/dto package instead?
-
-
 @Serializable
 data class DataResponse(
     val pagination: Pagination,

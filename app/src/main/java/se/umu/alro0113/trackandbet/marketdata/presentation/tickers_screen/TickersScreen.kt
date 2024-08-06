@@ -9,11 +9,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Analytics
-import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Analytics
-import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Card
@@ -70,7 +68,7 @@ fun TickersContent(
     ) {
 
         LazyColumn(
-            modifier = Modifier.padding(top = it.calculateTopPadding())
+            modifier = Modifier.padding(top = it.calculateTopPadding(), bottom = it.calculateBottomPadding()) // pad both ends to see last item
         ) {
 
             items(state.tickers) { ticker ->

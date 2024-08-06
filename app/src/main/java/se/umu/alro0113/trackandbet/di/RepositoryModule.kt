@@ -8,7 +8,6 @@ import se.umu.alro0113.trackandbet.marketdata.data.repository.TickersRepositoryI
 import se.umu.alro0113.trackandbet.marketdata.domain.repository.DetailsRepository
 import se.umu.alro0113.trackandbet.marketdata.domain.repository.TickersRepository
 import se.umu.alro0113.trackandbet.transactions.data.repository.TransactionRepositoryImpl
-import se.umu.alro0113.trackandbet.transactions.domain.model.Transaction
 import se.umu.alro0113.trackandbet.transactions.domain.repository.TransactionRepository
 import javax.inject.Singleton
 

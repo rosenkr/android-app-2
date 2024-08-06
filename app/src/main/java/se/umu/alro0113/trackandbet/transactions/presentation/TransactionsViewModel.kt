@@ -27,7 +27,6 @@ class TransactionsViewModel @Inject constructor(
     init{
         _state.value = TransactionsViewState()
         getTransactions() // attempt call from database
-        // but I dont want it on the init.. ? because whats the point of the database then?
     }
 
     fun onEvent(event: TransactionEvent) {
@@ -46,20 +45,26 @@ class TransactionsViewModel @Inject constructor(
         }
     }
 
-    // get all existing transactions in the cache or api
+    // get all existing transactions from local storage or remote endpoint
     fun getTransactions(
         fetchFromRemote: Boolean = false,
-        query: String? = state.value?.searchQuery
+        query: String = state.value?.searchQuery.toString() // string cant be null, but state can be. toString would make the string "null" if state is null
     ) {
         viewModelScope.launch {
             _state.postValue(_state.value?.copy(isLoading = true))
 
-            transactionRepository.getTransactions(fetchFromRemote, query) // TODO
+            // isRefreshing differs from isLoading in that isLoading is used for the LoadingDialog when TransactionsScreen is first navigated to
+            // isRefreshing is true specifically when we are asked to fetch from remote
+            if(fetchFromRemote){
+                _state.postValue(_state.value?.copy(isRefreshing = true))
+            }
+            // the "delay", whether network or database fetching. but then isLoading  is same as isRefreshing?
+            transactionRepository.getTransactions(fetchFromRemote, query)
                 .onRight { transactions ->
-                    _state.postValue(_state.value?.copy(transactions = transactions, isLoading = false))
+                    _state.postValue(_state.value?.copy(transactions = transactions, isLoading = false, isRefreshing = false))
                 }
                 .onLeft { error ->
-                    _state.postValue(_state.value?.copy(error = error.error.message, isLoading = false))
+                    _state.postValue(_state.value?.copy(error = error.error.message, isLoading = false, isRefreshing = false))
                     sendEvent(Event.Toast(error.error.message))
                 }
         }
