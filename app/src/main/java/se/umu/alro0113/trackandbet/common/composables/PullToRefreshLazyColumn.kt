@@ -1,5 +1,6 @@
 package se.umu.alro0113.trackandbet.common.composables
 
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -51,6 +52,7 @@ fun <T> PullToRefreshLazyColumn(
             }
         }
 
+        // if passed state isRefreshing is true, set pulled refresh state to true, and vice versa
         LaunchedEffect(isRefreshing) {
             if(isRefreshing) {
                 pullToRefreshState.startRefresh()
