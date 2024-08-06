@@ -5,11 +5,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import se.umu.alro0113.trackandbet.marketdata.presentation.detail_screen.DetailScreen
-import se.umu.alro0113.trackandbet.marketdata.presentation.tickers_screen.TickersScreen
-import se.umu.alro0113.trackandbet.onboarding.presentation.home_screen.HomeScreen
-import se.umu.alro0113.trackandbet.onboarding.presentation.welcome_screen.WelcomeScreen
-import se.umu.alro0113.trackandbet.transactions.presentation.TransactionsScreen
+import se.umu.alro0113.trackandbet.features.marketdata.presentation.detail_screen.DetailScreen
+import se.umu.alro0113.trackandbet.features.marketdata.presentation.tickers_screen.TickersScreen
+import se.umu.alro0113.trackandbet.features.onboarding.presentation.home_screen.HomeScreen
+import se.umu.alro0113.trackandbet.features.onboarding.presentation.welcome_screen.WelcomeScreen
+import se.umu.alro0113.trackandbet.features.transactions.presentation.TransactionsScreen
 
 @Composable
 fun TrackAndBetNavHost(

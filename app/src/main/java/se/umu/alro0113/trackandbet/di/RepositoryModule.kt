@@ -3,12 +3,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import se.umu.alro0113.trackandbet.marketdata.data.repository.DetailsRepositoryImpl
-import se.umu.alro0113.trackandbet.marketdata.data.repository.TickersRepositoryImpl
-import se.umu.alro0113.trackandbet.marketdata.domain.repository.DetailsRepository
-import se.umu.alro0113.trackandbet.marketdata.domain.repository.TickersRepository
-import se.umu.alro0113.trackandbet.transactions.data.repository.TransactionRepositoryImpl
-import se.umu.alro0113.trackandbet.transactions.domain.repository.TransactionRepository
+import se.umu.alro0113.trackandbet.features.marketdata.data.repository.DetailsRepositoryImpl
+import se.umu.alro0113.trackandbet.features.marketdata.data.repository.TickersRepositoryImpl
+import se.umu.alro0113.trackandbet.features.marketdata.domain.repository.DetailsRepository
+import se.umu.alro0113.trackandbet.features.marketdata.domain.repository.TickersRepository
+import se.umu.alro0113.trackandbet.features.transactions.data.repository.TransactionRepositoryImpl
+import se.umu.alro0113.trackandbet.features.transactions.domain.repository.TransactionRepository
 import javax.inject.Singleton
 
 /*

@@ -15,15 +15,14 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import se.umu.alro0113.trackandbet.marketdata.data.remote.DetailsApi
-import se.umu.alro0113.trackandbet.marketdata.data.remote.TickersApi
-import se.umu.alro0113.trackandbet.marketdata.data.remote.createDetailsApi
-import se.umu.alro0113.trackandbet.marketdata.data.remote.createTickersApi
-import se.umu.alro0113.trackandbet.onboarding.data.datastore.DataStoreRepository
-import se.umu.alro0113.trackandbet.transactions.data.local.AppDatabase
-import se.umu.alro0113.trackandbet.transactions.data.remote.TransactionsApi
-import se.umu.alro0113.trackandbet.transactions.data.remote.createTransactionsApi
-import javax.inject.Qualifier
+import se.umu.alro0113.trackandbet.features.marketdata.data.remote.DetailsApi
+import se.umu.alro0113.trackandbet.features.marketdata.data.remote.TickersApi
+import se.umu.alro0113.trackandbet.features.marketdata.data.remote.createDetailsApi
+import se.umu.alro0113.trackandbet.features.marketdata.data.remote.createTickersApi
+import se.umu.alro0113.trackandbet.features.onboarding.data.datastore.DataStoreRepository
+import se.umu.alro0113.trackandbet.database.AppDatabase
+import se.umu.alro0113.trackandbet.features.transactions.data.remote.TransactionsApi
+import se.umu.alro0113.trackandbet.features.transactions.data.remote.createTransactionsApi
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
