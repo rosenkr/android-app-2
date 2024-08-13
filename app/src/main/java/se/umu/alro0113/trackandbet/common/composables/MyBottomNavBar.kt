@@ -60,7 +60,7 @@ fun MyBottomNavBar(items : List<BottomNavigationItem>, selectedItemIndex : Int, 
 // Bottom nav bar gradient towards system bottom bar
 @Composable
 fun GradientBottom(content: @Composable () -> Unit) {
-    val bottomNavBarDefaultBackground =  NavigationBarDefaults.containerColor
+    val bottomNavBarDefaultBackground =  MaterialTheme.colorScheme.surfaceContainer //NavigationBarDefaults.containerColor
 
     Box(
         modifier = Modifier

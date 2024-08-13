@@ -38,7 +38,7 @@ fun MyTopAppBar(
 // Top app bar gradient towards system top bar
 @Composable
 fun GradientTop(content: @Composable () -> Unit) {
-    val topAppBarDefaultBackground = MaterialTheme.colorScheme.surface
+    val topAppBarDefaultBackground = MaterialTheme.colorScheme.surfaceContainer
 
     Box(
         modifier = Modifier
