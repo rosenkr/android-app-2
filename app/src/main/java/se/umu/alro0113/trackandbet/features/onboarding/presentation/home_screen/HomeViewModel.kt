@@ -69,6 +69,7 @@ class HomeViewModel @Inject constructor(
             // TODO client below
             //client.webSocket(method = HttpMethod.Get, host = "10.0.2.2", port = 8081, path = "/ws") {
             // TODO ec2 instance attempt ws://16.171.253.210:8081/ws
+            // this instance is now deleted and inactive.
             client.webSocket(method = HttpMethod.Get, host = "16.171.253.210", port = 8081, path = "/ws"){
                 handleConnection(this)
             }
