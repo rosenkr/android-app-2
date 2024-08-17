@@ -26,7 +26,7 @@ import com.patrykandpatrick.vico.core.chart.line.LineChart
 import com.patrykandpatrick.vico.core.component.shape.shader.DynamicShaders
 import com.patrykandpatrick.vico.core.entry.ChartEntryModelProducer
 import com.patrykandpatrick.vico.core.entry.FloatEntry
-import se.umu.alro0113.trackandbet.common.util.calculateAxisValuesOverrider
+import se.umu.alro0113.trackandbet.common.util.axisValueOverriderThreeMonthsChart
 import se.umu.alro0113.trackandbet.common.util.convertToMyDate
 import se.umu.alro0113.trackandbet.features.marketdata.domain.model.Data
 
@@ -41,7 +41,7 @@ fun VicoChart(last100ClosesData : List<Data>){
     val scrollState = rememberChartScrollState() // custom state for Vico Charts
 
     // Setting up modelProducer with dataset from the passed in state
-    val dataPoints = arrayListOf<FloatEntry>() // currently last 50 days of data, so update once every weekday after market close
+    val dataPoints = arrayListOf<FloatEntry>() // currently last 100 days of data, so update once every weekday after market close
     datasetLineSpec.add(
         LineChart.LineSpec(
             lineThicknessDp = 2f,
@@ -69,7 +69,7 @@ fun VicoChart(last100ClosesData : List<Data>){
     datasetForModel.add(dataPoints)
     modelProducer.setEntries(datasetForModel)
 
-    val axisValuesOverrider = calculateAxisValuesOverrider(last100ClosesData)
+    val axisValuesOverrider = axisValueOverriderThreeMonthsChart(last100ClosesData)
     val symbol = if (last100ClosesData.isNotEmpty()) last100ClosesData[0].symbol else ""
 
     // Creating the vico graph inside a Card

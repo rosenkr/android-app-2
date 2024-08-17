@@ -13,6 +13,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.websocket.DefaultClientWebSocketSession
+import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import se.umu.alro0113.trackandbet.features.marketdata.data.remote.DetailsApi
@@ -28,6 +30,20 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideWebSocketHttpClient(): WebSocketHttpClient {
+        val client = HttpClient(CIO) {
+            install(WebSockets) {
+                pingInterval = 20_000
+            }
+            install(ContentNegotiation) {
+                json(Json { isLenient = true; ignoreUnknownKeys = true })
+            }
+        }
+        return WebSocketHttpClient(client)
+    }
 
     @Provides
     @Singleton
@@ -88,4 +104,8 @@ object AppModule {
             "appdb.db"
         ).build()
     }
+}
+
+class WebSocketHttpClient(private val client: HttpClient) {
+    fun getClient(): HttpClient = client
 }

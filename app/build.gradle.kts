@@ -94,7 +94,7 @@ dependencies {
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.content.negotiation)
-
+    implementation(libs.ktor.client.websockets)
     // General json handling and compose safe args navigation
     implementation(libs.kotlinx.serialization.json)
 
