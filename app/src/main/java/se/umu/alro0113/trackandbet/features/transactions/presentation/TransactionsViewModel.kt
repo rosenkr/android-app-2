@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -48,9 +49,9 @@ class TransactionsViewModel @Inject constructor(
     // get all existing transactions from local storage or remote endpoint
     fun getTransactions(
         fetchFromRemote: Boolean = false,
-        query: String = state.value?.searchQuery.toString() // string cant be null, but state can be. toString would make the string "null" if state is null
+        query: String = state.value?.searchQuery.toString()
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _state.postValue(_state.value?.copy(isLoading = true))
 
             // isRefreshing differs from isLoading in that isLoading is used for the LoadingDialog when TransactionsScreen is first navigated to
@@ -58,7 +59,7 @@ class TransactionsViewModel @Inject constructor(
             if(fetchFromRemote){
                 _state.postValue(_state.value?.copy(isRefreshing = true))
             }
-            // the "delay", whether network or database fetching. but then isLoading  is same as isRefreshing?
+
             transactionRepository.getTransactions(fetchFromRemote, query)
                 .onRight { transactions ->
                     _state.postValue(_state.value?.copy(transactions = transactions, isLoading = false, isRefreshing = false))

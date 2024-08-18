@@ -9,12 +9,15 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxCoroutinesCore = "1.8.1"
+kotlinxCoroutinesPlayServices = "1.8.0"
 ktorfitVersion = "2.0.0"
 lifecycleRuntimeKtx = "2.8.3"
 activityCompose = "1.9.0"
 composeBom = "2024.06.00"
 materialIconsExtendedAndroid = "1.6.8"
 navigationCompose = "2.8.0-beta05"
+playServicesLocation = "21.3.0"
 roomRuntime = "2.6.1"
 vico = "1.15.0"
 appcompat = "1.7.0"
@@ -52,6 +55,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor_version" }
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor_version" }
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor_version" }
@@ -64,6 +69,7 @@ datastore-preferences = { module = "androidx.datastore:datastore-preferences", v
 
 # For `compose`. Creates a `ChartStyle` based on an M3 Material Theme.
 ktorfit-lib = { module = "de.jensklingenberg.ktorfit:ktorfit-lib", version.ref = "ktorfitVersion" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 vico-compose-m3 = { group = "com.patrykandpatrick.vico", name = "compose-m3", version.ref = "vico" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }

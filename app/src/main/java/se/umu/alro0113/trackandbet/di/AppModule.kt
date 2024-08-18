@@ -3,6 +3,8 @@ package se.umu.alro0113.trackandbet.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +27,7 @@ import se.umu.alro0113.trackandbet.features.transactions.data.remote.Transaction
 import se.umu.alro0113.trackandbet.features.transactions.data.remote.createTransactionsApi
 import javax.inject.Singleton
 
+// Dependency injection to avoid passing these objects as parameters
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {

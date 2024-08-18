@@ -23,6 +23,7 @@ import se.umu.alro0113.trackandbet.common.composables.LoadingDialog
 import se.umu.alro0113.trackandbet.common.composables.MyTopAppBar
 import kotlin.reflect.full.memberProperties
 
+// Uses reflection to display property names, read somewhere at a glance that reflection may slow things down
 @Composable
 internal fun DetailScreen(
     viewModel: DetailViewModel = hiltViewModel(),

@@ -14,6 +14,7 @@ class DetailsRepositoryImpl @Inject constructor(
     private val detailsApi: DetailsApi
 ): DetailsRepository {
 
+
     override suspend fun getData(symbol: String): Either<NetworkError, DataResponse> {
         return Either.catch {
             val getRequestUrl = "eod?symbols=$symbol&access_key=" + BuildConfig.API_KEY

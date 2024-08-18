@@ -30,7 +30,13 @@ fun MyBottomNavBar(items : List<BottomNavigationItem>, selectedItemIndex : Int, 
                     NavigationBarItem(
                         selected = selectedItemIndex == index,
                         onClick = {
-                            navController.navigate(item.route)
+                            // either pops back to an existing entry for this route, or navigate and add new entry
+                            // if no such entry was found to pop back to
+                            if (!navController.popBackStack(item.route, inclusive = false)) { // only create new entry if we had to pop anything from the back stack in order to
+                                navController.navigate(item.route) {
+                                    launchSingleTop = true // avoid recreating viewmodel if user clicks on the same item multiple times
+                                }
+                            }
                         },
                         icon = {
                             if(index == selectedItemIndex){

@@ -42,7 +42,6 @@ import se.umu.alro0113.trackandbet.features.transactions.domain.model.Transactio
 import se.umu.alro0113.trackandbet.common.util.BottomNavigationItem
 import se.umu.alro0113.trackandbet.common.composables.MyBottomNavBar
 
-// did not use internal fun to separate viewmodel and state because want to access viewModel.onEvent() inside the screen
 @Composable
 fun TransactionsScreen(
     navController: NavHostController,
@@ -113,7 +112,7 @@ fun TransactionsScreen(
                             }
                         }
                     },
-                    isRefreshing = state.isRefreshing, // todo isRefreshing ?
+                    isRefreshing = state.isRefreshing,
                     onRefresh = { viewModel.onEvent(TransactionEvent.Refresh) } )
             }
         }

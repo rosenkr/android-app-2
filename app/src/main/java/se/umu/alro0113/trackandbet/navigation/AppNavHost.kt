@@ -12,7 +12,7 @@ import se.umu.alro0113.trackandbet.features.onboarding.presentation.welcome_scre
 import se.umu.alro0113.trackandbet.features.transactions.presentation.TransactionsScreen
 
 @Composable
-fun TrackAndBetNavHost(
+fun AppNavHost(
     navController : NavHostController,
     startDestination : Screen
 ) {

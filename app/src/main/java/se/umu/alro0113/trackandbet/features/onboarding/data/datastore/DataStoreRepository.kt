@@ -1,4 +1,4 @@
-// Original author at https://github.com/stevdza-san/OnBoardingCompose/blob/master/app/src/main/java/com/example/onboardingcompose/data/DataStoreRepository.kt
+// Credits goes to original author at https://github.com/stevdza-san/OnBoardingCompose/blob/master/app/src/main/java/com/example/onboardingcompose/data/DataStoreRepository.kt
 package se.umu.alro0113.trackandbet.features.onboarding.data.datastore
 
 import android.content.Context

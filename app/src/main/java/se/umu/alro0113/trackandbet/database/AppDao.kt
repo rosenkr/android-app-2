@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import se.umu.alro0113.trackandbet.features.transactions.data.local.TransactionEntity
 
-// TODO break out of specific transactions feature hierarchy, this is a general interface
 @Dao
 interface AppDao {
 

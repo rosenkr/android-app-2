@@ -1,7 +1,7 @@
 package se.umu.alro0113.trackandbet.features.marketdata.domain.model
 import kotlinx.serialization.Serializable
 
-// TODO is being used as a domain model but is actually data/remote/dto as in for transactions feature mockoon
+// TODO this file should not be under domain/model, it is a dto which should go under data/dto for example?
 @Serializable
 data class DataResponse(
     val pagination: Pagination,

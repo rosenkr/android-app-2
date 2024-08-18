@@ -7,19 +7,21 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-// Three custom page indicators, blue if selected
-val blueColor = Color(0xFF4285F4)
+// Three custom page indicators
 @Composable
 fun PageIndicator(
     pageSize: Int,
     selectedPage: Int
 ) {
+    val primaryColor = MaterialTheme.colorScheme.primary
+
     Row (
         horizontalArrangement = Arrangement.SpaceBetween
     ){
@@ -29,7 +31,7 @@ fun PageIndicator(
                 .size(20.dp)
                 .clip(CircleShape)
                 .background(color =
-                if (page == selectedPage) blueColor else Color.LightGray)
+                if (page == selectedPage) primaryColor else Color.LightGray)
             )
         }
     }

@@ -13,9 +13,6 @@ fun Throwable.toNetworkError(): NetworkError {
     Log.e(TAG, "Message: ${this.message}")
     Log.e(TAG, "Stack trace: ${this.stackTraceToString()}")
     val error = when(this){
-
-        // TODO: add enum entries to ApiError that reflect the actually known exceptions RedirectResponse, ClientRequest and ServerResponse
-        // TODO Which are essentiallly 300, 400, and 500 errors
         is IOException -> ApiError.NetworkError
         is RedirectResponseException -> ApiError.UnknownResponse
         is ClientRequestException -> ApiError.UnknownResponse

@@ -30,8 +30,9 @@ import se.umu.alro0113.trackandbet.common.util.calculateAxisValuesOverrider
 import se.umu.alro0113.trackandbet.common.util.convertToMyDate
 import se.umu.alro0113.trackandbet.features.marketdata.domain.model.Data
 
-// TODO currently resides in the marketdata feature detail screen because the function is not general enough
-// TODO to go in the common package
+// Hardcoded for the Detail Screen. Displays a chart for 100 trading days for a given ticker on Nasdaq 100.
+// Note that it does not take in to account non-trading days
+// Is not a fully finished implementation, but works for now
 @Composable
 fun VicoChart(last100ClosesData : List<Data>){
     // Dataset
@@ -41,11 +42,11 @@ fun VicoChart(last100ClosesData : List<Data>){
     val scrollState = rememberChartScrollState() // custom state for Vico Charts
 
     // Setting up modelProducer with dataset from the passed in state
-    val dataPoints = arrayListOf<FloatEntry>() // currently last 50 days of data, so update once every weekday after market close
+    val dataPoints = arrayListOf<FloatEntry>()
     datasetLineSpec.add(
         LineChart.LineSpec(
             lineThicknessDp = 2f,
-            lineColor = MaterialTheme.colorScheme.primary.toArgb(), // expecting color val primaryLight = Color(0xFF4C662B)
+            lineColor = MaterialTheme.colorScheme.primary.toArgb(),
             lineBackgroundShader = DynamicShaders.fromBrush(
                 brush = Brush.verticalGradient(
                     listOf(
@@ -56,11 +57,11 @@ fun VicoChart(last100ClosesData : List<Data>){
             )
         )
     )
-    // For each day of eod Data, from long time ago (index 49...) to most recent day (index 0)
+    // For each day of eod Data, from long time ago (index 99...) to most recent day (index 0)
     val dateMap = mutableMapOf<Float, String>()
     for(i in last100ClosesData.indices.reversed()){
         val data = last100ClosesData[i]
-        val xPos = (last100ClosesData.size - 1 - i).toFloat() // goes from 0 to 49, is x. Might need to cast to Float?
+        val xPos = (last100ClosesData.size - 1 - i).toFloat() // goes from 0 to 99, is x
         val yPos = data.close.toFloat()
         dataPoints.add(FloatEntry(x = xPos, y = yPos))
         dateMap[xPos] = data.date // for ValueFormatter
@@ -78,7 +79,7 @@ fun VicoChart(last100ClosesData : List<Data>){
         .height(350.dp)
         .padding(16.dp, 16.dp, 16.dp),
     ) {
-        Text(text = "$symbol last 100 trading days closing values")
+        Text(text = "$symbol Close price for last 100 trading days")
         if(datasetForModel.isNotEmpty()){  // just-in-case guarding
             // styling the chart, see api/docs for customizing
             ProvideChartStyle {

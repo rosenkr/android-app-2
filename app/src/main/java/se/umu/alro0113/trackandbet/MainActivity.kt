@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 // The initial state of the screen is null. We need to wait for the ViewModel to set it to either
                 // the Welcome screen or the Home screen before proceeding.
                 val screen by splashViewModel.startDestination
-                screen?.let { TrackAndBetApp(startDestination = it) }
+                screen?.let { App(startDestination = it) }
             }
         }
     }

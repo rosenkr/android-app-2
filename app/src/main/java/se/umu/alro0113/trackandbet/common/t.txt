@@ -1,5 +1,0 @@
-common contains subpackages composables and util
-composables should contain @Composable annotated functions used by different features
-util should contain classes and .kt files that are used by different features
-
-

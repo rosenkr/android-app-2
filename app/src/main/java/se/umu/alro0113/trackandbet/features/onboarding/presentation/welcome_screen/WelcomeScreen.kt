@@ -23,7 +23,9 @@ import se.umu.alro0113.trackandbet.features.onboarding.presentation.welcome_scre
 import se.umu.alro0113.trackandbet.features.onboarding.presentation.welcome_screen.components.PageIndicator
 import se.umu.alro0113.trackandbet.features.onboarding.presentation.welcome_screen.components.pages
 
-
+// Inside this code, composables send functions as arguments to NextBackButton (such as onNextClick)
+// ,which looks more neat, but i'm not sure which way I prefer over just declaring the blocks
+// at the receiving function
 @Composable
 fun WelcomeScreen(
     navController: NavHostController,

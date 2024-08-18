@@ -25,6 +25,7 @@ android {
             useSupportLibrary = true
         }
 
+        // for hiding api key
         val properties = Properties()
         properties.load(project.rootProject.file("local.properties").inputStream())
 
@@ -85,6 +86,7 @@ dependencies {
 
     implementation(libs.androidx.material.icons.extended.android)
 
+    // Vico for charts
     implementation(libs.vico.compose.m3) // charts and graphs
     implementation(libs.androidx.ui.text.google.fonts) // text fonts
     implementation(libs.androidx.appcompat)
@@ -121,6 +123,12 @@ dependencies {
     api(libs.datastore.preferences)
     api(libs.datastore)
 
+    // fused location API
+    implementation(libs.play.services.location)
+
+    // for await()
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.play.services) // or the latest vers
     // Splash Screen
     implementation(libs.androidx.core.splashscreen)
 

@@ -2,6 +2,7 @@ package se.umu.alro0113.trackandbet.navigation
 
 import kotlinx.serialization.Serializable
 
+// Introducing a sealed class which allos for safe args in compose, since recent versions of jetpack navigation with navhost
 @Serializable
 sealed class Screen {
     @Serializable

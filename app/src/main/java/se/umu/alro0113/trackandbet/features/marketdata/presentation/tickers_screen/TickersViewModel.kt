@@ -1,14 +1,15 @@
 package se.umu.alro0113.trackandbet.features.marketdata.presentation.tickers_screen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import se.umu.alro0113.trackandbet.features.marketdata.domain.repository.TickersRepository
-import se.umu.alro0113.trackandbet.common.util.sendEvent
 import se.umu.alro0113.trackandbet.common.util.Event
+import se.umu.alro0113.trackandbet.common.util.sendEvent
+import se.umu.alro0113.trackandbet.features.marketdata.domain.repository.TickersRepository
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,9 +21,16 @@ class TickersViewModel @Inject constructor(
     val state : LiveData<TickersViewState> = _state
 
     init {
+        Log.d("ViewModel", "tickers ViewModel created: ${this.hashCode()}")
+
         _state.value = TickersViewState()
         getTickers()
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d("ViewModel", "tickers ViewModel cleared: ${this.hashCode()}")
     }
 
     fun getTickers(){
