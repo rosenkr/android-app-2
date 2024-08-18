@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import se.umu.alro0113.trackandbet.features.onboarding.data.datastore.DataStoreRepository
 import javax.inject.Inject
 
-// State management with DataStore. IO Dispatcher inside viewmodelscope for accessing storage
+// State management with DataStore. IO Dispatcher inside viewmodel scope for accessing storage
 @HiltViewModel
 class WelcomeViewModel @Inject constructor(
     private val repository: DataStoreRepository

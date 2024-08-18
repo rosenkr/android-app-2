@@ -1,4 +1,4 @@
-package se.umu.alro0113.trackandbet.features.onboarding.presentation.home_screen
+package se.umu.alro0113.trackandbet.features.home
 
 import android.Manifest
 import android.content.Context

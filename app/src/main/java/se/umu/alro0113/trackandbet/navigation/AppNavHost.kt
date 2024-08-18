@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import se.umu.alro0113.trackandbet.features.marketdata.presentation.detail_screen.DetailScreen
 import se.umu.alro0113.trackandbet.features.marketdata.presentation.tickers_screen.TickersScreen
-import se.umu.alro0113.trackandbet.features.onboarding.presentation.home_screen.HomeScreen
+import se.umu.alro0113.trackandbet.features.home.HomeScreen
 import se.umu.alro0113.trackandbet.features.onboarding.presentation.welcome_screen.WelcomeScreen
 import se.umu.alro0113.trackandbet.features.transactions.presentation.TransactionsScreen
 

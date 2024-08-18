@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
-import se.umu.alro0113.trackandbet.features.onboarding.presentation.welcome_screen.SplashViewModel
+import se.umu.alro0113.trackandbet.features.onboarding.presentation.SplashViewModel
 import se.umu.alro0113.trackandbet.ui.theme.AppTheme
 import javax.inject.Inject
 

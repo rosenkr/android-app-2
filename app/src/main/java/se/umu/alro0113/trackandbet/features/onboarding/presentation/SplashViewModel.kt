@@ -1,4 +1,4 @@
-package se.umu.alro0113.trackandbet.features.onboarding.presentation.welcome_screen
+package se.umu.alro0113.trackandbet.features.onboarding.presentation
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
