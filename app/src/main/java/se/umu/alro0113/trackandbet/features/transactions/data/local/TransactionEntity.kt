@@ -3,6 +3,7 @@ package se.umu.alro0113.trackandbet.features.transactions.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+// Example of how a transaction history entry could look like
 @Entity("transactions")
 data class TransactionEntity(
     @PrimaryKey(autoGenerate = true) val tId: Int = 0, // auto-generated transaction id

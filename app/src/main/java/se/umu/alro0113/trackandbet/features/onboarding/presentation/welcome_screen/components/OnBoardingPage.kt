@@ -32,10 +32,5 @@ fun OnBoardingPage(page: Page){
             modifier = Modifier
                 .padding(horizontal = 8.dp, vertical = 2.dp)
         )
-        Text(text = page.description,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier
-                .padding(horizontal = 8.dp, vertical = 2.dp)
-        )
     }
 }
